@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{EXAM_NAME}} Awareness Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Header -->
+  <header class="flex flex-col items-center justify-center bg-gradient-to-r from-blue-700 to-orange-500 text-white shadow p-6">
+    <img src="{{EXAM_LOGO_URL}}" alt="Exam Logo" class="w-28 mb-3 rounded-xl bg-white p-2" />
+    <h1 class="text-3xl font-bold">{{EXAM_NAME}} Awareness Page</h1>
+    <p class="text-gray-100">{{CONDUCTING_BODY}}</p>
+  </header>
+
+  <!-- Content Container -->
+  <main class="max-w-4xl mx-auto my-10 space-y-8">
+
+    <!-- Section Template -->
+    <section data-aos="fade-up" class="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition">
+      <div class="flex items-center mb-4">
+        <i data-lucide="target" class="w-6 h-6 text-blue-600 mr-2"></i>
+        <h2 class="text-2xl font-semibold text-blue-600">Purpose</h2>
+      </div>
+      <p>{{PURPOSE}}</p>
+    </section>
+
+    <section data-aos="fade-up" class="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition">
+      <div class="flex items-center mb-4">
+        <i data-lucide="calendar" class="w-6 h-6 text-blue-600 mr-2"></i>
+        <h2 class="text-2xl font-semibold text-blue-600">Important Dates</h2>
+      </div>
+      <ul class="list-disc ml-6 space-y-2">
+        {{DATES}}
+      </ul>
+    </section>
+
+    <section data-aos="fade-up" class="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition">
+      <div class="flex items-center mb-4">
+        <i data-lucide="edit-3" class="w-6 h-6 text-blue-600 mr-2"></i>
+        <h2 class="text-2xl font-semibold text-blue-600">Registration Details</h2>
+      </div>
+      <p>{{REGISTRATION_INFO}}</p>
+      <a href="{{REGISTRATION_LINK}}" target="_blank" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Go to Registration Portal</a>
+    </section>
+
+    <section data-aos="fade-up" class="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition">
+      <div class="flex items-center mb-4">
+        <i data-lucide="user-check" class="w-6 h-6 text-blue-600 mr-2"></i>
+        <h2 class="text-2xl font-semibold text-blue-600">Eligibility Criteria</h2>
+      </div>
+      <ul class="list-disc ml-6 space-y-2">
+        {{ELIGIBILITY}}
+      </ul>
+    </section>
+
+    <section data-aos="fade-up" class="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition">
+      <div class="flex items-center mb-4">
+        <i data-lucide="book-open" class="w-6 h-6 text-blue-600 mr-2"></i>
+        <h2 class="text-2xl font-semibold text-blue-600">Syllabus Overview</h2>
+      </div>
+      <ul class="list-disc ml-6 space-y-2">
+        {{SYLLABUS}}
+      </ul>
+    </section>
+
+    <section data-aos="fade-up" class="bg-white p-6 rounded-2xl shadow hover:shadow-xl transition">
+      <div class="flex items-center mb-4">
+        <i data-lucide="layout-grid" class="w-6 h-6 text-blue-600 mr-2"></i>
+        <h2 class="text-2xl font-semibold text-blue-600">Paper Pattern</h2>
+      </div>
+      <ul class="list-disc ml-6 space-y-2">
+        {{PATTERN}}
+      </ul>
+      <a href="{{BROCHURE_LINK}}" target="_blank" class="mt-4 inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">Download Official Brochure (PDF)</a>
+    </section>
+
+  </main>
+
+  <!-- Floating Button -->
+  <a href="{{OFFICIAL_WEBSITE}}" target="_blank" class="fixed bottom-5 right-5 bg-blue-700 text-white px-5 py-3 rounded-full shadow-lg hover:bg-blue-800 transition">Official Website</a>
+
+  <script>
+    AOS.init({ duration: 800 });
+    lucide.createIcons();
+  </script>
+</body>
+</html>

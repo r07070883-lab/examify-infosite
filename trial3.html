@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exam Explorer</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #ffe4b3, #ffd6cc);
+    }
+
+    header {
+      background: linear-gradient(90deg, #ff0000, #ffcc00);
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .quote {
+      text-align: center;
+      font-style: italic;
+      font-weight: 600;
+      color: #b30000;
+      margin: 10px 0 20px;
+      font-size: 1.1rem;
+    }
+
+    .filter-bar {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    label {
+      font-weight: 600;
+      color: #b30000;
+      margin-right: 10px;
+    }
+
+    select {
+      padding: 8px 12px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 2px solid #ffcc00;
+      background-color: white;
+      color: #b30000;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    select:hover {
+      background-color: #fff2cc;
+    }
+
+    h1 {
+      text-align: center;
+      color: #b30000;
+      font-size: 2rem;
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 0 40px 60px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
+    }
+
+    .logo {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .exam-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .category {
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-top: 5px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 12px;
+      background: linear-gradient(90deg, #ff0000, #ffcc00);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 3px 10px rgba(255, 0, 0, 0.3);
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>🎓 Exam Explorer</header>
+  <div class="quote">"Patience = Success"</div>
+
+  <div class="filter-bar">
+    <label for="category">Sort by Category:</label>
+    <select id="category" onchange="filterExams()">
+      <option value="all">All</option>
+      <option value="engineering">Engineering</option>
+      <option value="medical">Medical</option>
+      <option value="both">Both</option>
+      <option value="others">Others</option>
+    </select>
+  </div>
+
+  <div class="grid" id="examGrid">
+    <!-- Engineering -->
+    <div class="card" data-category="engineering">
+      <img src="jee-main.jpg" class="logo" alt="JEE Main">
+      <div class="exam-name">JEE Main</div>
+      <div class="category">Engineering</div>
+      <a href="jee-main.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="engineering">
+      <img src="jee-advanced.png" class="logo" alt="JEE Advanced">
+      <div class="exam-name">JEE Advanced</div>
+      <div class="category">Engineering</div>
+      <a href="jee-advanced.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="engineering">
+      <img src="bitsat.png" class="logo" alt="BITSAT">
+      <div class="exam-name">BITSAT</div>
+      <div class="category">Engineering</div>
+      <a href="bitsat.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="engineering">
+      <img src="vitee.jpg" class="logo" alt="VITEEE">
+      <div class="exam-name">VITEEE</div>
+      <div class="category">Engineering</div>
+      <a href="viteee.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="engineering">
+      <img src="srmjeee.png" class="logo" alt="SRMJEEE">
+      <div class="exam-name">SRMJEEE</div>
+      <div class="category">Engineering</div>
+      <a href="srmjeee.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="engineering">
+      <img src="wbjee.jpg" class="logo" alt="WBJEE">
+      <div class="exam-name">WBJEE</div>
+      <div class="category">Engineering</div>
+      <a href="wbjee.html" class="button">View Details</a>
+    </div>
+
+    <!-- Both -->
+    <div class="card" data-category="both">
+      <img src="kcet.jpg" class="logo" alt="KCET">
+      <div class="exam-name">KCET</div>
+      <div class="category">Engineering / Medical</div>
+      <a href="kcet.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="both">
+      <img src="ts-eamcet.jpg" class="logo" alt="TS EAMCET">
+      <div class="exam-name">TS EAMCET</div>
+      <div class="category">Engineering / Medical</div>
+      <a href="tseamcet.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="engineering">
+      <img src="met.jpg" class="logo" alt="MET">
+      <div class="exam-name">MET</div>
+      <div class="category">Engineering</div>
+      <a href="met.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="both">
+      <img src="comedk.jpg" class="logo" alt="COMEDK">
+      <div class="exam-name">COMEDK</div>
+      <div class="category">Engineering / Dental</div>
+      <a href="comedk.html" class="button">View Details</a>
+    </div>
+
+    <!-- Medical -->
+    <div class="card" data-category="medical">
+      <img src="jee-main.jpg" class="logo" alt="NEET UG">
+      <div class="exam-name">NEET UG</div>
+      <div class="category">Medical</div>
+      <a href="neet.html" class="button">View Details</a>
+    </div>
+
+    <!-- Others -->
+    <div class="card" data-category="others">
+      <img src="jee-main.jpg" class="logo" alt="CUET">
+      <div class="exam-name">CUET</div>
+      <div class="category">Any Field</div>
+      <a href="cuet.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="others">
+      <img src="iat.png" class="logo" alt="IAT">
+      <div class="exam-name">IAT (IISER)</div>
+      <div class="category">Research</div>
+      <a href="iat.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="others">
+      <img src="nest.jpg" class="logo" alt="NEST">
+      <div class="exam-name">NEST</div>
+      <div class="category">Research</div>
+      <a href="nest.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="both">
+      <img src="apeamcet.jpg" class="logo" alt="AP-EAMCET">
+      <div class="exam-name">AP-EAMCET</div>
+      <div class="category">Engineering / Pharmacy</div>
+      <a href="apeamcet.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="others">
+      <img src="nda" class="logo" alt="NDA">
+      <div class="exam-name">NDA</div>
+      <div class="category">Defence</div>
+      <a href="nda.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="engineering">
+      <img src="ugee.jpg" class="logo" alt="UGEE">
+      <div class="exam-name">UGEE</div>
+      <div class="category">Engineering</div>
+      <a href="ugee.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="others">
+      <img src="uceed.png" class="logo" alt="UCEED">
+      <div class="exam-name">UCEED</div>
+      <div class="category">Design</div>
+      <a href="uceed.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="others">
+      <img src="nata.jpg" class="logo" alt="NATA">
+      <div class="exam-name">NATA</div>
+      <div class="category">Architecture</div>
+      <a href="nata.html" class="button">View Details</a>
+    </div>
+
+    <div class="card" data-category="both">
+      <img src="mhtcet.jpg" class="logo" alt="CLAT">
+      <div class="exam-name">MHTCET</div>
+      <div class="category">engineering/pharmacy</div>
+      <a href="mhtcet.html" class="button">View Details</a>
+    </div>
+
+  </div>
+
+  <script>
+    function filterExams() {
+      const category = document.getElementById("category").value;
+      const exams = document.querySelectorAll(".card");
+
+      exams.forEach(exam => {
+        const dataCat = exam.getAttribute("data-category");
+        if (category === "all") {
+          exam.style.display = "block";
+        } else if (category === "both" && dataCat.includes("both")) {
+          exam.style.display = "block";
+        } else if (category === "engineering" && dataCat.includes("engineering")) {
+          exam.style.display = "block";
+        } else if (category === "medical" && dataCat.includes("medical")) {
+          exam.style.display = "block";
+        } else if (category === "others" && dataCat === "others") {
+          exam.style.display = "block";
+        } else {
+          exam.style.display = "none";
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
