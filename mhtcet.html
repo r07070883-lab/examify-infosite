@@ -6,33 +6,35 @@
 <title>MHT-CET 2026 | Official Exam Portal</title>
 
 <style>
-:root{
-  --blue:#0284c7;
-  --light:#e0f2fe;
-  --dark:#0f172a;
+:root {
+  --blue: #0284c7;
+  --light-blue: #38bdf8;
+  --cyan: #7dd3fc;
+  --light: #e0f2fe;
+  --dark: #0f172a;
 }
 
-body{
-  margin:0;
-  font-family:"Segoe UI", Roboto, Arial, sans-serif;
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
   background:
     linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
     url("mhtcet12.jpg");
-  background-size:cover;
-  background-position:center;
-  background-attachment:fixed;
-  color:white;
-  overflow-x:hidden;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  overflow-x: hidden;
 }
 
-.particles span{
-  position:fixed;
-  width:8px;
-  height:8px;
-  background:#4fc3f7;
-  border-radius:50%;
-  opacity:0.7;
-  animation:float 16s linear infinite;
+.particles span {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: #4fc3f7;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: float 16s linear infinite;
 }
 .particles span:nth-child(1){left:10%;animation-delay:0s;}
 .particles span:nth-child(2){left:25%;animation-delay:3s;}
@@ -41,156 +43,163 @@ body{
 .particles span:nth-child(5){left:75%;animation-delay:5s;}
 .particles span:nth-child(6){left:90%;animation-delay:1s;}
 
-@keyframes float{
+@keyframes float {
   0%{bottom:-10px;opacity:0;}
   10%{opacity:0.6;}
   100%{bottom:110%;opacity:0;}
 }
 
-.logo-top{
-  text-align:center;
-  padding:18px 0;
+.logo-top {
+  text-align: center;
+  padding: 18px 0;
 }
-.logo-top img{
-  height:75px;
-  background:white;
-  padding:10px 16px;
-  border-radius:16px;
-}
-
-
-.header{
-  text-align:center;
-  padding:55px 20px 75px;
-}
-.header h1{
-  font-size:38px;
-  margin:0;
-}
-.header p{
-  margin-top:10px;
-  font-size:16px;
-  opacity:0.95;
+.logo-top img {
+  height: 75px;
+  background: white;
+  padding: 10px 16px;
+  border-radius: 16px;
 }
 
-.main{
-  max-width:900px;
-  margin:-45px auto 60px;
-  padding:0 16px;
+.header {
+  text-align: center;
+  padding: 55px 20px 75px;
+}
+.header h1 {
+  font-size: 38px;
+  margin: 0;
+}
+.header p {
+  margin-top: 10px;
+  font-size: 16px;
+  opacity: 0.95;
 }
 
-.card{
-  background:rgba(255,255,255,0.12);
-  backdrop-filter:blur(14px);
-  border-radius:20px;
-  padding:28px;
-  margin-bottom:26px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.4);
-  transition:transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 22px 50px rgba(0,0,0,0.6);
+.main {
+  max-width: 900px;
+  margin: -45px auto 60px;
+  padding: 0 16px;
 }
 
-.section-title{
-  display:flex;
-  align-items:center;
-  font-size:22px;
-  font-weight:700;
-  color:var(--light);
-  margin-bottom:14px;
+.card {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 28px;
+  margin-bottom: 26px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.section-title .icon{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  background:linear-gradient(135deg,var(--light),#ffd54f);
-  color:#1e293b;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-right:12px;
-}
-.content{
-  color:#e2e8f0;
-  line-height:1.75;
-  font-size:15.6px;
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 50px rgba(0,0,0,0.6);
 }
 
-ul{
-  padding-left:20px;
-}
-ul li{
-  margin-bottom:8px;
+.section-title {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--light);
+  margin-bottom: 14px;
 }
 
-.btn{
-  display:inline-block;
-  margin-top:18px;
-  margin-right:10px;
-  padding:14px 36px;
-  background:linear-gradient(135deg,var(--light blue),var(--gold));
-  color:white;
-  text-decoration:none;
-  border-radius:40px;
-  font-weight:600;
-  transition:transform 0.25s, box-shadow 0.25s;
+.section-title .icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  /* Changed from gold to light blue gradient */
+  background: linear-gradient(135deg, var(--light-blue), var(--cyan));
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
 }
-.btn:hover{
-  transform:scale(1.07);
-  box-shadow:0 12px 30px rgba(255,179,0,0.6);
+
+.content {
+  color: #e2e8f0;
+  line-height: 1.75;
+  font-size: 15.6px;
+}
+
+ul {
+  padding-left: 20px;
+}
+ul li {
+  margin-bottom: 8px;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 18px;
+  margin-right: 10px;
+  padding: 14px 36px;
+  /* Changed from gold/orange to Light Blue gradient */
+  background: linear-gradient(135deg, var(--blue), var(--light-blue));
+  color: white;
+  text-decoration: none;
+  border-radius: 40px;
+  font-weight: 600;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.4);
 }
 
 /* ===== LINK CARDS ===== */
-.link-card{
-  background:rgba(255,255,255,0.95);
-  color:#0f172a;
-  border-radius:18px;
-  padding:22px;
-  box-shadow:0 12px 30px rgba(0,0,0,0.25);
-  transition:transform 0.25s ease, box-shadow 0.25s ease;
+.link-card {
+  background: rgba(255,255,255,0.95);
+  color: #0f172a;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.link-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 18px 45px rgba(0,0,0,0.35);
+.link-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.35);
 }
-.link-card h4{
-  margin-top:0;
+.link-card h4 {
+  margin-top: 0;
 }
-.link-card p{
-  color:#334155;
-  font-size:14.5px;
+.link-card p {
+  color: #334155;
+  font-size: 14.5px;
 }
-.link-card .button{
-  display:inline-block;
-  margin-top:12px;
-  padding:10px 22px;
-  background:linear-gradient(135deg,#0284c7,#38bdf8);
-  color:white;
-  text-decoration:none;
-  border-radius:22px;
-  font-weight:600;
+.link-card .button {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 22px;
+  background: linear-gradient(135deg, var(--blue), var(--light-blue));
+  color: white;
+  text-decoration: none;
+  border-radius: 22px;
+  font-weight: 600;
 }
 
 /* ===== FOOTER ===== */
-.footer{
-  display:flex;
-  justify-content:center;
-  margin:40px 0 50px;
+.footer {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 50px;
 }
-.back-home{
-  padding:14px 42px;
-  background:linear-gradient(135deg,var(--orange),var(--gold));
-  color:white;
-  text-decoration:none;
-  border-radius:30px;
-  font-size:18px;
-  font-weight:600;
+.back-home {
+  padding: 14px 42px;
+  /* Changed from orange/gold to Blue/Light-Blue gradient */
+  background: linear-gradient(135deg, var(--blue), var(--light-blue));
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: transform 0.25s;
+}
+.back-home:hover {
+  transform: translateY(-3px);
 }
 </style>
 </head>
-
 <body>
 
 <div class="particles">
@@ -277,34 +286,27 @@ ul li{
     <div class="content">
       Based on Maharashtra State Board syllabus of Class 11 and 12.
     </div>
-    <a href="https://cetcell.mahacet.org/" target="_blank" class="btn">
-      Official Syllabus
-    </a>
+    <a href="https://cetcell.mahacet.org/" target="_blank" class="btn">Official Syllabus</a>
   </div>
 
   <h2>🔗 Important Links</h2>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:15px;">
-
     <div class="link-card">
       <h4>📘 Information Brochure</h4>
       <p>Official MHT-CET information bulletin.</p>
       <a class="button" href="https://cetcell.mahacet.org/" target="_blank">Download</a>
     </div>
-
     <div class="link-card">
       <h4>🏫 CAP Round Details</h4>
       <p>Centralized Admission Process information.</p>
       <a class="button" href="https://cetcell.mahacet.org/" target="_blank">View Details</a>
     </div>
-
     <div class="link-card">
       <h4>📜 Syllabus PDF</h4>
       <p>Official MHT-CET syllabus document.</p>
       <a class="button" href="https://cetcell.mahacet.org/" target="_blank">Download</a>
     </div>
-
   </div>
-
 </div>
 
 <footer class="footer">
