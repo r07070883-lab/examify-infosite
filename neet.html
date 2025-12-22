@@ -1,201 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEET - Exam Info</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f7fff9;
-      color: #333;
-      line-height: 1.6;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEET 2026 | Official Exam Portal</title>
 
-    header {
-      background: linear-gradient(90deg, #2e7d32, #66bb6a);
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
+<style>
+:root {
+  --gold:#d4af37;
+  --green:#1e7f43;
+  --light-gold:#f5e6a8;
+}
 
-    header img {
-      height: 70px;
-      margin-bottom: 10px;
-    }
+/* ===== BODY BACKGROUND ===== */
+body{
+  margin:0;
+  font-family:"Segoe UI",Roboto,Arial,sans-serif;
+  background:
+    linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.75)),
+    url("neet-bg.jpg");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  color:white;
+  overflow-x:hidden;
+}
 
-    section {
-      background: white;
-      max-width: 850px;
-      margin: 20px auto;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+/* ===== FLOATING MEDICAL ICONS ===== */
+.med-icons span{
+  position:fixed;
+  font-size:26px;
+  opacity:0.35;
+  pointer-events:none;
+  animation:floatIcon 18s linear infinite;
+}
+.med-icons span:nth-child(1){left:8%;animation-delay:0s;}
+.med-icons span:nth-child(2){left:22%;animation-delay:4s;}
+.med-icons span:nth-child(3){left:38%;animation-delay:8s;}
+.med-icons span:nth-child(4){left:55%;animation-delay:2s;}
+.med-icons span:nth-child(5){left:72%;animation-delay:6s;}
+.med-icons span:nth-child(6){left:88%;animation-delay:10s;}
 
-    h2 {
-      color: #2e7d32;
-      border-left: 5px solid #66bb6a;
-      padding-left: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+@keyframes floatIcon{
+  0%{bottom:-10%;opacity:0;transform:rotate(0deg);}
+  10%{opacity:0.35;}
+  50%{transform:rotate(180deg) translateX(15px);}
+  100%{bottom:110%;opacity:0;transform:rotate(360deg);}
+}
 
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
+/* ===== LOGO ===== */
+.logo-top{text-align:center;padding:18px 0;}
+.logo-top img{
+  height:75px;
+  background:white;
+  padding:10px 16px;
+  border-radius:16px;
+}
 
-    li::before {
-      content: "✔";
-      color: #2e7d32;
-      margin-right: 8px;
-    }
+/* ===== HEADER ===== */
+.header{
+  text-align:center;
+  padding:55px 20px 75px;
+}
+.header h1{font-size:38px;margin:0;}
+.header p{margin-top:10px;font-size:16px;opacity:0.95;}
 
-    a.button {
-      background: linear-gradient(90deg, #2e7d32, #66bb6a);
-      color: white;
-      text-decoration: none;
-      padding: 10px 15px;
-      border-radius: 8px;
-      display: inline-block;
-      margin-top: 10px;
-      transition: 0.3s ease;
-    }
+/* ===== MAIN ===== */
+.main{
+  max-width:900px;
+  margin:-45px auto 60px;
+  padding:0 16px;
+}
 
-    a.button:hover {
-      opacity: 0.9;
-    }
+.card{
+  background:rgba(255,255,255,0.14);
+  backdrop-filter:blur(14px);
+  border-radius:20px;
+  padding:28px;
+  margin-bottom:26px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.4);
+}
 
-    .note {
-      background: #e8f5e9;
-      padding: 10px;
-      border-left: 5px solid #2e7d32;
-      border-radius: 5px;
-      margin-top: 10px;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-      background: #ff6f00;
-      color: white;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-    }
+.section-title{
+  display:flex;
+  align-items:center;
+  font-size:22px;
+  font-weight:700;
+  color:var(--light-gold);
+  margin-bottom:14px;
+}
 
-    footer a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-    }
-  </style>
+.section-title .icon{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--gold),var(--green));
+  color:#0f172a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-right:12px;
+}
+
+.content{
+  color:#f1f5f9;
+  line-height:1.75;
+  font-size:15.6px;
+}
+
+ul{padding-left:20px;}
+ul li{margin-bottom:8px;}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-block;
+  margin-top:18px;
+  margin-right:10px;
+  padding:14px 36px;
+  background:linear-gradient(135deg,var(--gold),var(--green));
+  color:#0f172a;
+  text-decoration:none;
+  border-radius:40px;
+  font-weight:700;
+}
+.btn:hover{transform:scale(1.06);}
+
+/* ===== LINK CARDS ===== */
+.link-card{
+  background:rgba(255,255,255,0.95);
+  color:#0f172a;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.25);
+}
+.link-card p{color:#334155;font-size:14.5px;}
+.link-card .button{
+  display:inline-block;
+  margin-top:12px;
+  padding:10px 22px;
+  background:linear-gradient(135deg,var(--gold),var(--green));
+  color:#0f172a;
+  text-decoration:none;
+  border-radius:22px;
+  font-weight:700;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  display:flex;
+  justify-content:center;
+  margin:40px 0 50px;
+}
+.back-home{
+  padding:14px 42px;
+  background:linear-gradient(135deg,var(--gold),var(--green));
+  color:#0f172a;
+  text-decoration:none;
+  border-radius:30px;
+  font-size:18px;
+  font-weight:700;
+}
+</style>
 </head>
+
 <body>
-  <header>
-    <img src="jee-main.jpg" alt="NEET Logo">
-    <h1>NEET (UG) 2025</h1>
-  </header>
 
-  <section>
-    <h2><i class="fa-solid fa-bullseye"></i> Purpose</h2>
-    <p>The National Eligibility cum Entrance Test (NEET) is conducted by NTA for admission to undergraduate medical, dental, and AYUSH courses in India.</p>
+<!-- FLOATING ICONS -->
+<div class="med-icons">
+  <span>⚕️</span><span>🧬</span><span>💊</span>
+  <span>🩺</span><span>❤️</span><span>➕</span>
+</div>
 
-    <h2><i class="fa-solid fa-stethoscope"></i> Courses Offered</h2>
-    <ul>
-      <li>MBBS – Bachelor of Medicine and Bachelor of Surgery</li>
-      <li>BDS – Bachelor of Dental Surgery</li>
-      <li>BAMS, BHMS, BUMS – Traditional Medicine Courses</li>
-      <li>BSMS, BNYS – Siddha and Yoga Courses</li>
-    </ul>
+<div class="logo-top">
+  <img src="https://neet.nta.nic.in/wp-content/uploads/2023/03/neet-logo.png" alt="NEET Logo">
+</div>
 
-    <h2><i class="fa-regular fa-calendar-days"></i> Important Dates</h2>
-    <ul>
-      <li>Application Start: February 2025 (tentative)</li>
-      <li>Exam Date: 3rd May 2025 (Offline Mode)</li>
-      <li>Result Declaration: June 2025</li>
-    </ul>
+<div class="header">
+  <h1>NEET (UG) 2026</h1>
+  <p>National Eligibility cum Entrance Test for Medical Admissions</p>
+</div>
 
-    <h2><i class="fa-solid fa-id-card"></i> Eligibility Criteria</h2>
-    <ul>
-      <li>Must have passed Class 12 with Physics, Chemistry, Biology/Biotechnology, and English.</li>
-      <li>Minimum 50% marks (40% for OBC/SC/ST).</li>
-      <li>Minimum age: 17 years by 31st December 2025.</li>
-    </ul>
+<div class="main">
 
-    <h2><i class="fa-solid fa-list-ol"></i> Exam Pattern</h2>
-    <p>The exam has 200 questions (180 to be answered). Each subject – Physics, Chemistry, Biology (Botany & Zoology) – is divided into Section A (35 Qs) and Section B (15 Qs).</p>
-
-    <div class="note"><i class="fa-solid fa-circle-info"></i> Negative marking: 1 mark deducted for each wrong answer. +4 for correct.</div>
-
-    <h2><i class="fa-solid fa-language"></i> Exam Mode & Languages</h2>
-    <p>NEET is conducted in **offline (pen-paper)** mode and available in **13 languages** including English, Hindi, Kannada, Tamil, Telugu, and more.</p>
-
-    <h2><i class="fa-solid fa-hospital"></i> Participating Institutes</h2>
-    <ul>
-      <li>All AIIMS Institutes (Delhi, Bhopal, Bhubaneswar, etc.)</li>
-      <li>JIPMER Puducherry</li>
-      <li>Government & Private Medical Colleges under MCC/State Quotas</li>
-    </ul>
-
-    <h2><i class="fa-solid fa-file-lines"></i> Documents Required</h2>
-    <ul>
-      <li>Class 10 & 12 Marksheets</li>
-      <li>Passport-size Photograph & Signature</li>
-      <li>Photo ID Proof (Aadhaar, PAN, Passport)</li>
-      <li>Category & PwD Certificate (if applicable)</li>
-    </ul>
-
-    <h2><i class="fa-solid fa-credit-card"></i> Payment Methods</h2>
-    <p>Payment can be made through Credit/Debit Card, Net Banking, or UPI.</p>
-
-    <h2><i class="fa-solid fa-book-open"></i> Syllabus</h2>
-    <p>Based on NCERT Class 11 & 12 syllabus of Physics, Chemistry, and Biology.</p>
-<h2><i class="fa-solid fa-id-card"></i> Result web</h2>
-<a href="https://examinationservices.nic.in/resultservices/neet2025/Login/" target="_blank" class="button">Official Website</a><br><br>
-
-
-
- <h2><i class="fas fa-link"></i> NEET Home</h2>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:15px;">
-
-    <div class="box">
-      <h4>📘 Tie-Breaking Rules</h4>
-      <p>Rules used when two or more candidates obtain the same percentile.</p>
-      <a class="button" href="https://www.pw.live/neet/exams/neet-2025-tie-breaking-criteria" target="_blank">View PDF</a>
-    </div>
-
-    <div class="box">
-      <h4>🏫 Seat Matrix</h4>
-      <p>Institute-wise and category-wise seat availability.</p>
-      <a class="button" href="https://share.google/wuIBUZH4xMFFVKH5E" target="_blank">View Seat Matrix</a>
-    </div>
-
-    <div class="box">
-      <h4>💰 Exam Fees</h4>
-      <p>Exam fess based on your category.</p>
-      <a class="button" href="https://motion.ac.in/blog/neet-form-fees-for-general-obc-sc-and-st-categories/" target="_blank">View Fee Details</a>
-    </div>
-
-    <div class="box">
-      <h4>📄 Application Page</h4>
-      <p>Official NEET application page.</p>
-      <a class="button" href="https://neet.nta.nic.in/" target="_blank">Application Page</a>
-    </div>
-
+<!-- PURPOSE -->
+<div class="card">
+  <div class="section-title"><div class="icon">🎯</div>Purpose</div>
+  <div class="content">
+    NEET (UG) is conducted by the National Testing Agency (NTA) for admission to
+    MBBS, BDS, AYUSH and other undergraduate medical courses across India.
   </div>
+</div>
 
+<!-- IMPORTANT DATES -->
+<div class="card">
+  <div class="section-title"><div class="icon">📅</div>Important Dates</div>
+  <div class="content">
+    <ul>
+      <li>Registration Start: February 2026</li>
+      <li>Last Date to Apply: March 2026</li>
+      <li>Admit Card: April 2026</li>
+      <li>Exam Date: May 2026</li>
+      <li>Result: June 2026</li>
+    </ul>
   </div>
-  </section>
-  <footer>
-    <a href="index.html">⬅ Back to Home</a>
-  </footer>
+</div>
+
+<!-- ELIGIBILITY -->
+<div class="card">
+  <div class="section-title"><div class="icon">🎓</div>Eligibility Criteria</div>
+  <div class="content">
+    <ul>
+      <li>Physics, Chemistry & Biology in Class 12</li>
+      <li>Minimum age: 17 years</li>
+      <li>No upper age limit (as per NTA)</li>
+      <li>Indian & OCI candidates eligible</li>
+    </ul>
+  </div>
+</div>
+
+<!-- EXAM PATTERN -->
+<div class="card">
+  <div class="section-title"><div class="icon">📝</div>Exam Pattern</div>
+  <div class="content">
+    <ul>
+      <li>Mode: Pen & Paper (OMR)</li>
+      <li>Subjects: Physics, Chemistry, Biology</li>
+      <li>Total Questions: 200 (180 to attempt)</li>
+      <li>Negative Marking applicable</li>
+    </ul>
+  </div>
+</div>
+
+<!-- DOCUMENTS -->
+<div class="card">
+  <div class="section-title"><div class="icon">📄</div>Documents Required</div>
+  <div class="content">
+    <ul>
+      <li>Class 10 & 12 Mark Sheets</li>
+      <li>Aadhaar / Valid Photo ID</li>
+      <li>Photograph & Signature</li>
+    </ul>
+  </div>
+</div>
+
+<!-- REGISTRATION -->
+<div class="card">
+  <div class="section-title"><div class="icon">📝</div>Registration</div>
+  <div class="content">Apply online through the official NTA portal.</div>
+  <a href="https://neet.nta.nic.in" target="_blank" class="btn">Apply Online</a>
+  <a href="https://neet.nta.nic.in" target="_blank" class="btn">Official Website</a>
+</div>
+
+<!-- LINKS -->
+<h2>🔗 Important Links</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:15px;">
+  <div class="link-card">
+    <h4>📘 Information Bulletin</h4>
+    <p>Official NEET brochure.</p>
+    <a class="button" href="https://neet.nta.nic.in" target="_blank">View</a>
+  </div>
+  <div class="link-card">
+    <h4>📜 NEET Syllabus</h4>
+    <p>NCERT-based syllabus.</p>
+    <a class="button" href="https://neet.nta.nic.in" target="_blank">Download</a>
+  </div>
+  <div class="link-card">
+    <h4>🏫 MCC Counselling</h4>
+    <p>All India Quota counselling.</p>
+    <a class="button" href="https://mcc.nic.in" target="_blank">Visit</a>
+  </div>
+</div>
+
+</div>
+
+<footer class="footer">
+  <a href="index.html" class="back-home">⬅ Back to Home</a>
+</footer>
+
 </body>
 </html>
-
-
-
-
