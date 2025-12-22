@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UGEE 2026 | IIIT Hyderabad Admission Portal</title>
+
+<style>
+:root{
+  --neon:#22d3ee;
+  --violet:#8b5cf6;
+  --pink:#ec4899;
+  --dark:#020617;
+}
+
+body{
+  margin:0;
+  font-family:"Segoe UI", Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(circle at top,rgba(34,211,238,0.15),transparent 40%),
+    linear-gradient(rgba(2,6,23,0.88),rgba(2,6,23,0.88)),
+    url("bg-tech.jpg");
+  background-size:cover;
+  background-attachment:fixed;
+  color:#e5e7eb;
+  overflow-x:hidden;
+}
+
+/* ===== TECH PARTICLES ===== */
+.particles span{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:var(--neon);
+  border-radius:50%;
+  opacity:0.6;
+  animation:float 18s linear infinite;
+}
+.particles span:nth-child(odd){background:var(--violet);}
+@keyframes float{
+  from{bottom:-10px;transform:translateX(0);}
+  to{bottom:110%;transform:translateX(120px);}
+}
+
+/* ===== HEADER ===== */
+.logo-top{text-align:center;padding:22px 0;}
+.logo-top img{
+  height:78px;
+  background:white;
+  padding:10px 18px;
+  border-radius:18px;
+}
+
+.header{
+  text-align:center;
+  padding:60px 20px 85px;
+}
+.header h1{
+  font-size:40px;
+  background:linear-gradient(135deg,var(--neon),var(--pink));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.header p{
+  margin-top:10px;
+  font-size:16px;
+  opacity:0.9;
+}
+
+/* ===== MAIN ===== */
+.main{
+  max-width:920px;
+  margin:-55px auto 60px;
+  padding:0 16px;
+}
+
+.card{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(16px);
+  border-radius:22px;
+  padding:30px;
+  margin-bottom:28px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.55);
+  border:1px solid rgba(255,255,255,0.12);
+  transition:transform 0.3s ease;
+}
+.card:hover{transform:translateY(-6px);}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  font-size:22px;
+  font-weight:700;
+  color:var(--neon);
+  margin-bottom:14px;
+}
+.section-title .icon{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--neon),var(--violet));
+  color:#020617;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-right:14px;
+}
+
+.content{line-height:1.75;font-size:15.6px;color:#d1d5db;}
+ul{padding-left:20px;}
+ul li{margin-bottom:8px;}
+
+.btn{
+  display:inline-block;
+  margin-top:18px;
+  margin-right:10px;
+  padding:14px 36px;
+  background:linear-gradient(135deg,var(--violet),var(--pink));
+  color:white;
+  text-decoration:none;
+  border-radius:40px;
+  font-weight:600;
+  box-shadow:0 0 20px rgba(139,92,246,0.5);
+}
+
+.link-card{
+  background:rgba(255,255,255,0.95);
+  color:#020617;
+  border-radius:20px;
+  padding:22px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.35);
+}
+.link-card h4{margin-top:0;}
+.link-card p{font-size:14.5px;color:#334155;}
+.link-card .button{
+  display:inline-block;
+  margin-top:12px;
+  padding:10px 22px;
+  background:linear-gradient(135deg,#0ea5e9,#6366f1);
+  color:white;
+  text-decoration:none;
+  border-radius:22px;
+  font-weight:600;
+}
+
+.footer{
+  display:flex;
+  justify-content:center;
+  margin:40px 0 55px;
+}
+.back-home{
+  padding:14px 44px;
+  background:linear-gradient(135deg,var(--pink),var(--violet));
+  color:white;
+  text-decoration:none;
+  border-radius:32px;
+  font-size:18px;
+  font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<div class="particles">
+  <span></span><span></span><span></span>
+  <span></span><span></span><span></span>
+</div>
+
+<div class="logo-top">
+  <img src="ugee-logo.jpg" alt="UGEE Logo">
+</div>
+
+<div class="header">
+  <h1>UGEE 2026</h1>
+  <p>Undergraduate Entrance Examination – IIIT Hyderabad</p>
+</div>
+
+<div class="main">
+
+<div class="card">
+  <div class="section-title"><div class="icon">🎯</div>Purpose</div>
+  <div class="content">
+    UGEE is conducted by IIIT Hyderabad for admission into its
+    dual-degree B.Tech + MS programs focusing on research, innovation,
+    and advanced computer science.
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">📅</div>Important Dates</div>
+  <div class="content">
+    <ul>
+      <li>Registration Start: February 2026</li>
+      <li>Exam Date: April 2026</li>
+      <li>Admit Card: 7 days before exam</li>
+      <li>Interview Round: May 2026</li>
+      <li>Final Result: June 2026</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">🎓</div>Eligibility Criteria</div>
+  <div class="content">
+    <ul>
+      <li>Indian nationals</li>
+      <li>Class 12 with Mathematics & Physics</li>
+      <li>Minimum 60% aggregate</li>
+      <li>Appearing candidates eligible</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">📝</div>Exam Pattern</div>
+  <div class="content">
+    <strong>SUPR:</strong> Logical reasoning & aptitude<br>
+    <strong>REAP:</strong> Mathematics & Physics (advanced level)<br>
+    <ul>
+      <li>Mode: Computer Based Test</li>
+      <li>Duration: 3 Hours</li>
+      <li>Shortlisting for interviews</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">📄</div>Documents Required</div>
+  <div class="content">
+    <ul>
+      <li>Photograph & signature</li>
+      <li>Class 10 & 12 marksheets</li>
+      <li>Government photo ID</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">📝</div>Registration Guide</div>
+  <div class="content">Step-by-step guide to apply for UGEE.</div>
+  <a href="ugee-guide.pdf" class="btn">📝 Registration Guide (PDF)</a>
+  <a href="https://ugadmissions.iiit.ac.in" target="_blank" class="btn">🔗 Official Registration</a>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">📚</div>Syllabus</div>
+  <div class="content">
+    Mathematics, Physics, Logical Reasoning & Analytical Thinking.
+  </div>
+  <a href="https://ugadmissions.iiit.ac.in" target="_blank" class="btn">Official Syllabus</a>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">💳</div>Payment Methods</div>
+  <div class="content">
+    <ul>
+      <li>Debit / Credit Cards</li>
+      <li>Net Banking</li>
+      <li>UPI</li>
+    </ul>
+    <strong>Note:</strong> Fee is non-refundable.
+  </div>
+</div>
+
+<h2>🔗 Important Links</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:15px;">
+
+  <div class="link-card">
+    <h4>📘 Information Bulletin</h4>
+    <p>Official UGEE brochure.</p>
+    <a class="button" href="https://ugadmissions.iiit.ac.in" target="_blank">Download</a>
+  </div>
+
+  <div class="link-card">
+    <h4>📜 Syllabus PDF</h4>
+    <p>Detailed exam syllabus.</p>
+    <a class="button" href="#" target="_blank">Download</a>
+  </div>
+
+  <div class="link-card">
+    <h4>🧠 Interview Process</h4>
+    <p>Details of interview & research orientation.</p>
+    <a class="button" href="#" target="_blank">View</a>
+  </div>
+
+</div>
+
+</div>
+
+<footer class="footer">
+  <a href="index.html" class="back-home">⬅ Back to Home</a>
+</footer>
+
+</body>
+</html>
