@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KCET 2026 | Official Exam Guide</title>
+
+<style>
+:root{
+  --purple:#7c3aed;
+  --violet:#a855f7;
+  --pink:#d946ef;
+}
+
+body{
+  margin:0;
+  font-family:"Segoe UI", Roboto, Arial, sans-serif;
+  background:
+    linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.72)),
+    url("kcet0.png");
+  background-size:cover;
+  background-attachment:fixed;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* ===== FLOATING PARTICLES ===== */
+.particles span{
+  position:fixed;
+  width:8px;
+  height:8px;
+  background:var(--violet);
+  border-radius:50%;
+  opacity:0.35;
+  animation:float 22s linear infinite;
+}
+.particles span:nth-child(even){
+  background:var(--pink);
+}
+@keyframes float{
+  from{bottom:-20px;transform:translateX(0);}
+  to{bottom:110%;transform:translateX(140px);}
+}
+
+/* ===== HEADER ===== */
+.header{
+  text-align:center;
+  padding:90px 20px 110px;
+}
+.header h1{
+  font-size:48px;
+  background:linear-gradient(90deg,var(--purple),var(--pink));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.header p{
+  margin-top:14px;
+  font-size:17px;
+  color:#e9d5ff;
+}
+
+/* ===== MAIN ===== */
+.main{
+  max-width:950px;
+  margin:-70px auto 70px;
+  padding:0 16px;
+}
+
+.card{
+  background:rgba(255,255,255,0.14);
+  backdrop-filter:blur(16px);
+  border-radius:24px;
+  padding:30px;
+  margin-bottom:28px;
+  box-shadow:0 18px 45px rgba(0,0,0,0.45);
+  transition:transform 0.3s ease;
+}
+.card:hover{
+  transform:translateY(-6px);
+}
+
+.section-title{
+  font-size:23px;
+  font-weight:700;
+  color:#e9d5ff;
+  margin-bottom:14px;
+}
+
+ul{padding-left:20px;}
+ul li{margin-bottom:8px;}
+
+.btn{
+  display:inline-block;
+  margin:14px 12px 0 0;
+  padding:15px 40px;
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+  color:white;
+  text-decoration:none;
+  border-radius:40px;
+  font-weight:700;
+  box-shadow:0 12px 30px rgba(168,85,247,0.45);
+  transition:transform 0.25s ease, box-shadow 0.25s ease;
+}
+.btn:hover{
+  transform:scale(1.08);
+  box-shadow:0 18px 40px rgba(168,85,247,0.65);
+}
+</style>
+</head>
+
+<body>
+
+<!-- FLOATING PARTICLES -->
+<div class="particles">
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>KCET 2026</h1>
+  <p>Karnataka Common Entrance Test • Engineering • Agriculture • Allied Sciences</p>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+<div class="card">
+  <div class="section-title">🎯 Purpose of KCET</div>
+  KCET is conducted by the Karnataka Examinations Authority (KEA) for admission
+  into Engineering, Agriculture, Pharmacy and other professional undergraduate
+  courses in Karnataka.
+</div>
+
+<div class="card">
+  <div class="section-title">📅 Important Dates</div>
+  <ul>
+    <li>Registration: January – February 2026</li>
+    <li>Admit Card Release: April 2026</li>
+    <li>Examination: April 2026</li>
+    <li>Result Declaration: May 2026</li>
+    <li>Counselling Process: June – August 2026</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="section-title">📝 Exam Pattern</div>
+  <ul>
+    <li>Physics – 60 Questions</li>
+    <li>Chemistry – 60 Questions</li>
+    <li>Mathematics / Biology – 60 Questions</li>
+    <li>Mode: Offline (OMR Based)</li>
+    <li>Duration: 80 minutes per paper</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="section-title">📄 Documents Required</div>
+  <ul>
+    <li>SSLC & 2nd PUC Marks Cards</li>
+    <li>Study Certificate (7 years)</li>
+    <li>Caste / Income Certificate (if applicable)</li>
+    <li>Photo Identity Proof</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="section-title">💳 Payment Method</div>
+  <ul>
+    <li>Debit / Credit Cards</li>
+    <li>Net Banking</li>
+    <li>UPI</li>
+  </ul>
+</div>
+
+<div class="card">
+  <div class="section-title">➡ Choose Your Stream</div>
+  <a class="btn" href="kcete.html">Engineering</a>
+  <a class="btn" href="kcetp.html">Agriculture & Allied</a>
+</div>
+
+</div>
+
+</body>
+</html>
