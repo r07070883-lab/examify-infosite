@@ -1,67 +1,307 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>JEE Advanced – Exam Guide</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEE Advanced 2026 | IIT Admission Portal</title>
+
 <style>
-body{font-family:Poppins,sans-serif;background:#eef3ff;margin:0}
-header{background:#2b59ff;color:#fff;padding:25px;text-align:center}
-.container{max-width:1000px;margin:40px auto;background:#fff;padding:35px;border-radius:15px}
-h2{color:#2b59ff;border-left:5px solid #2b59ff;padding-left:12px;display:flex;gap:10px}
-.box{background:#f5f7ff;border-left:4px solid #2b59ff;padding:18px;border-radius:10px;margin-top:15px}
-.button{background:#2b59ff;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;display:inline-block}
+:root{
+  --royal:#1e3a8a;
+  --gold:#fbbf24;
+  --sky:#38bdf8;
+  --bg:#f8fafc;
+}
+
+body{
+  margin:0;
+  font-family:"Segoe UI", Roboto, Arial, sans-serif;
+  background:
+    linear-gradient(rgba(255,255,255,0.72),rgba(255,255,255,0.72)),
+    url("jee-advanced-bg.jpg");
+  background-size:cover;
+  background-attachment:fixed;
+  color:#0f172a;
+  overflow-x:hidden;
+}
+
+/* ===== FLOATING PARTICLES ===== */
+.particles span{
+  position:fixed;
+  width:8px;
+  height:8px;
+  background:var(--gold);
+  border-radius:50%;
+  opacity:0.35;
+  animation:float 24s linear infinite;
+}
+.particles span:nth-child(even){background:var(--sky);}
+@keyframes float{
+  from{bottom:-20px;transform:translateX(0);}
+  to{bottom:110%;transform:translateX(160px);}
+}
+
+/* ===== HEADER ===== */
+.logo-top{text-align:center;padding:22px 0;}
+.logo-top img{
+  height:78px;
+  background:white;
+  padding:12px 22px;
+  border-radius:18px;
+}
+
+.header{
+  text-align:center;
+  padding:70px 20px 100px;
+}
+.header h1{
+  font-size:48px;
+  letter-spacing:1px;
+  background:linear-gradient(90deg,var(--royal),var(--gold));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.header p{
+  margin-top:14px;
+  font-size:16.5px;
+  color:#334155;
+}
+
+/* ===== MAIN ===== */
+.main{
+  max-width:980px;
+  margin:-70px auto 60px;
+  padding:0 16px;
+}
+
+.card{
+  background:rgba(255,255,255,0.8);
+  backdrop-filter:blur(16px);
+  border-radius:24px;
+  padding:32px;
+  margin-bottom:30px;
+  box-shadow:0 20px 45px rgba(0,0,0,0.14);
+  transition:transform 0.3s ease;
+}
+.card:hover{transform:translateY(-7px);}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  font-size:22.5px;
+  font-weight:700;
+  color:var(--royal);
+  margin-bottom:16px;
+}
+.section-title .icon{
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--royal),var(--gold));
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-right:14px;
+}
+
+.content{
+  line-height:1.75;
+  font-size:15.8px;
+  color:#1e293b;
+}
+ul{padding-left:20px;}
+ul li{margin-bottom:8px;}
+
+.btn{
+  display:inline-block;
+  margin-top:18px;
+  margin-right:10px;
+  padding:15px 38px;
+  background:linear-gradient(135deg,var(--royal),var(--gold));
+  color:white;
+  text-decoration:none;
+  border-radius:42px;
+  font-weight:600;
+  box-shadow:0 12px 28px rgba(30,58,138,0.35);
+  transition:transform 0.25s ease, box-shadow 0.25s ease;
+}
+.btn:hover{
+  transform:scale(1.08);
+  box-shadow:0 16px 40px rgba(30,58,138,0.45);
+}
+
+/* ===== LINKS ===== */
+.link-card{
+  background:white;
+  color:#0f172a;
+  border-radius:22px;
+  padding:24px;
+  box-shadow:0 16px 38px rgba(0,0,0,0.2);
+  transition:transform 0.25s ease;
+}
+.link-card:hover{transform:translateY(-7px);}
+.link-card h4{margin-top:0;}
+.link-card p{font-size:14.5px;color:#475569;}
+.link-card .button{
+  display:inline-block;
+  margin-top:12px;
+  padding:11px 24px;
+  background:linear-gradient(135deg,#60a5fa,#1e3a8a);
+  color:white;
+  text-decoration:none;
+  border-radius:24px;
+  font-weight:600;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  display:flex;
+  justify-content:center;
+  margin:45px 0 60px;
+}
+.back-home{
+  padding:15px 48px;
+  background:linear-gradient(135deg,var(--gold),var(--royal));
+  color:white;
+  text-decoration:none;
+  border-radius:34px;
+  font-size:18px;
+  font-weight:600;
+}
 </style>
 </head>
+
 <body>
-<header><h1>JEE Advanced – Complete Guide</h1></header>
-<div class="container">
-<h2><i class="fas fa-bullseye"></i> Purpose</h2>
-<p>JEE Advanced is the entrance exam for admission into IITs and a few other premier institutes.</p>
-<h2><i class="fas fa-calendar"></i> Important Dates</h2>
-<ul>
-  <li>Exam date: 17th May 2026</li>
-  <li>Registration: April–May 2026</li>
-  <li>Result declarcation: June 2026</li>
-  <li>Counselling:June-July 2026</li>
-</ul>
-<h2><i class="fas fa-edit"></i> Registration</h2>
-<a href="https://jeeadv.ac.in" target="_blank" class="button">Official Website</a>
-  
-  <div class="card">
-  <ol>
-    <li>Login using JEE Main credentials</li>
-    <li>Fill Apllication Form</li>
-    <li>Upload documents</li>
-    <li>Pay fee</li>
-    <li>Download confirmation</li>
-  </ol>
+
+<div class="particles">
+  <span></span><span></span><span></span>
+  <span></span><span></span><span></span>
 </div>
-<h2><i class="fas fa-user-check"></i> Eligibility</h2>
-<ul>
-  <li>Top 2.5 lakh in JEE Main</li>
-  <li>Maximum 2 attempts</li>
-</ul>
-<h2><i class="fas fa-clipboard-list"></i> Exam Pattern</h2>
-<p>Two papers, CBT mode, objective & numerical questions.</p>
-<h2><i class="fas fa-book"></i> Syllabus</h2>
-<div class="box"><a class="button" href="https://jeeadv.ac.in/syllabus" target="_blank">View Syllabus</a></div>
-<h2><i class="fas fa-credit-card"></i> Payment</h2>
-<p>Online payment via net banking, card, UPI.</p>
-<h2><i class="fas fa-file"></i> Documents</h2>
-<ul><li>Class 10 & 12 certificates</li><li>Photo ID</li></ul>
-<h2><i class="fas fa-link"></i> Important Links</h2>
-<div class="box"><p>Seat matrix, fees, rules via JoSAA</p></div>
+
+<div class="logo-top">
+  <img src="jee-advanced-logo.png" alt="JEE Advanced Logo">
 </div>
+
+<div class="header">
+  <h1>JEE Advanced 2026</h1>
+  <p>Joint Entrance Examination (Advanced) – Gateway to the Indian Institutes of Technology</p>
+</div>
+
+<div class="main">
+
+<div class="card">
+  <div class="section-title"><div class="icon">👑</div>Purpose</div>
+  <div class="content">
+    JEE Advanced is the most prestigious engineering entrance examination
+    in India, conducted for admission into undergraduate programs at
+    the Indian Institutes of Technology (IITs) and other premier institutes.
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">📅</div>Important Dates</div>
+  <div class="content">
+    <ul>
+      <li>Registration Start: April 2026</li>
+      <li>Admit Card Release: May 2026</li>
+      <li>Exam Date: June 2026</li>
+      <li>Result Declaration: June 2026</li>
+      <li>JoSAA Counselling: June–July 2026</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">🎓</div>Eligibility Criteria</div>
+  <div class="content">
+    <ul>
+      <li>Top 2.5 lakh candidates of JEE Main eligible</li>
+      <li>Class 12 passed in 2025 or 2026</li>
+      <li>Maximum two attempts in consecutive years</li>
+      <li>Age & category relaxations as per rules</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">🧠</div>Exam Pattern</div>
+  <div class="content">
+    <ul>
+      <li>Paper 1 & Paper 2 (Both compulsory)</li>
+      <li>Subjects: Physics, Chemistry, Mathematics</li>
+      <li>Question types vary yearly</li>
+      <li>Conceptual, analytical & application-based</li>
+      <li>Mode: Computer Based Test (CBT)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">📄</div>Documents Required</div>
+  <div class="content">
+    <ul>
+      <li>JEE Advanced Admit Card</li>
+      <li>Class 10 & 12 certificates</li>
+      <li>Category / PwD certificate (if applicable)</li>
+      <li>Valid photo identity proof</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">📝</div>Registration Guide</div>
+  <div class="content">Step-by-step guide to apply for JEE Advanced.</div>
+  <a href="jee-advanced-guide.pdf" class="btn">📝 Registration Guide (PDF)</a>
+  <a href="https://jeeadv.ac.in" target="_blank" class="btn">🔗 Official Portal</a>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">💳</div>Payment Methods</div>
+  <div class="content">
+    <ul>
+      <li>Debit / Credit Cards</li>
+      <li>Net Banking</li>
+      <li>UPI</li>
+    </ul>
+    <strong>Note:</strong> Application fee is non-refundable.
+  </div>
+</div>
+
+<h2>🔗 Important Links</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px;">
+
+  <div class="link-card">
+    <h4>📜 Syllabus</h4>
+    <p>Official JEE Advanced syllabus.</p>
+    <a class="button" href="#">Download</a>
+  </div>
+
+  <div class="link-card">
+    <h4>🏫 Seat Matrix</h4>
+    <p>IIT-wise & branch-wise seats.</p>
+    <a class="button" href="#">Download</a>
+  </div>
+
+  <div class="link-card">
+    <h4>💰 IIT Fees</h4>
+    <p>Institute-wise fee structure.</p>
+    <a class="button" href="#">View PDF</a>
+  </div>
+
+  <div class="link-card">
+    <h4>⚖️ Rank Tie-Breaking</h4>
+    <p>Official rank resolution rules.</p>
+    <a class="button" href="#">View PDF</a>
+  </div>
+
+</div>
+
+</div>
+
+<footer class="footer">
+  <a href="index.html" class="back-home">⬅ Back to Home</a>
+</footer>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
