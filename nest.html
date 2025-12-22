@@ -6,177 +6,188 @@
 <title>NEST 2026 | Official Exam Portal</title>
 
 <style>
-:root {
-  --blue: #0284c7;
-  --light-blue: #38bdf8;
-  --cyan: #7dd3fc;
-  --light: #e0f2fe;
-  --dark: #0f172a;
+:root{
+  --green:#22c55e;
+  --dark-green:#14532d;
 }
 
-body {
-  margin: 0;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  background:
-    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
-    url("mhtcet12.jpg");
+/* ===== BODY WITH BACKGROUND IMAGE (NO OVERLAY) ===== */
+body{
+  margin:0;
+  font-family:"Segoe UI",Roboto,Arial,sans-serif;
+
+  /* ✅ ONLY BACKGROUND IMAGE */
+  background-image: url("nest13.jpg");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
-  color: white;
-  overflow-x: hidden;
+
+  color:#0f172a;
+  overflow-x:hidden;
 }
 
-.particles span {
-  position: fixed;
-  width: 8px;
-  height: 8px;
-  background: #4fc3f7;
-  border-radius: 50%;
-  opacity: 0.7;
-  animation: float 16s linear infinite;
+/* ===== FLOATING SCIENCE ICONS ===== */
+.med-icons span{
+  position:fixed;
+  font-size:26px;
+  opacity:0.3;
+  pointer-events:none;
+  animation:floatIcon 18s linear infinite;
 }
-.particles span:nth-child(1){left:10%;animation-delay:0s;}
-.particles span:nth-child(2){left:25%;animation-delay:3s;}
-.particles span:nth-child(3){left:40%;animation-delay:6s;}
-.particles span:nth-child(4){left:60%;animation-delay:2s;}
-.particles span:nth-child(5){left:75%;animation-delay:5s;}
-.particles span:nth-child(6){left:90%;animation-delay:1s;}
+.med-icons span:nth-child(1){left:8%;animation-delay:0s;}
+.med-icons span:nth-child(2){left:22%;animation-delay:4s;}
+.med-icons span:nth-child(3){left:38%;animation-delay:8s;}
+.med-icons span:nth-child(4){left:55%;animation-delay:2s;}
+.med-icons span:nth-child(5){left:72%;animation-delay:6s;}
+.med-icons span:nth-child(6){left:88%;animation-delay:10s;}
 
-@keyframes float {
-  0%{bottom:-10px;opacity:0;}
-  10%{opacity:0.6;}
-  100%{bottom:110%;opacity:0;}
-}
-
-.logo-top {
-  text-align: center;
-  padding: 18px 0;
-}
-.logo-top img {
-  height: 75px;
-  background: white;
-  padding: 10px 16px;
-  border-radius: 16px;
+@keyframes floatIcon{
+  0%{bottom:-10%;opacity:0;}
+  10%{opacity:0.3;}
+  50%{transform:translateX(15px) rotate(180deg);}
+  100%{bottom:110%;opacity:0;transform:translateX(-15px) rotate(360deg);}
 }
 
-.header {
-  text-align: center;
-  padding: 55px 20px 75px;
+/* ===== LOGO ===== */
+.logo-top{
+  text-align:center;
+  padding:18px 0;
 }
-.header h1 {
-  font-size: 38px;
-  margin: 0;
-}
-.header p {
-  margin-top: 10px;
-  font-size: 16px;
-  opacity: 0.95;
+.logo-top img{
+  height:75px;
+  background:white;
+  padding:10px 16px;
+  border-radius:16px;
 }
 
-.main {
-  max-width: 900px;
-  margin: -45px auto 60px;
-  padding: 0 16px;
+/* ===== HEADER ===== */
+.header{
+  text-align:center;
+  padding:55px 20px 75px;
+}
+.header h1{
+  font-size:38px;
+  margin:0;
+  color:#064e3b;
+}
+.header p{
+  margin-top:10px;
+  font-size:16px;
+  color:#065f46;
 }
 
-.card {
-  background: rgba(255,255,255,0.12);
-  backdrop-filter: blur(14px);
-  border-radius: 20px;
-  padding: 28px;
-  margin-bottom: 26px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+/* ===== MAIN ===== */
+.main{
+  max-width:900px;
+  margin:-45px auto 60px;
+  padding:0 16px;
 }
 
-.section-title {
-  display: flex;
-  align-items: center;
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--light);
-  margin-bottom: 14px;
+.card{
+  background:rgba(255,255,255,0.85);
+  border-radius:20px;
+  padding:28px;
+  margin-bottom:26px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
 }
 
-.section-title .icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--light-blue), var(--cyan));
-  color: #1e293b;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 12px;
+.section-title{
+  display:flex;
+  align-items:center;
+  font-size:22px;
+  font-weight:700;
+  color:#065f46;
+  margin-bottom:14px;
 }
 
-.content {
-  color: #e2e8f0;
-  line-height: 1.75;
-  font-size: 15.6px;
+.section-title .icon{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#22c55e,#86efac);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-right:12px;
 }
 
-ul { padding-left: 20px; }
-ul li { margin-bottom: 8px; }
-
-.btn {
-  display: inline-block;
-  margin-top: 18px;
-  margin-right: 10px;
-  padding: 14px 36px;
-  background: linear-gradient(135deg, var(--blue), var(--light-blue));
-  color: white;
-  text-decoration: none;
-  border-radius: 40px;
-  font-weight: 600;
+.content{
+  color:#134e4a;
+  line-height:1.75;
+  font-size:15.6px;
 }
 
-.link-card {
-  background: rgba(255,255,255,0.95);
-  color: #0f172a;
-  border-radius: 18px;
-  padding: 22px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-}
-.link-card p { color: #334155; font-size: 14.5px; }
+ul{padding-left:20px;}
+ul li{margin-bottom:8px;}
 
-.link-card .button {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 10px 22px;
-  background: linear-gradient(135deg, var(--blue), var(--light-blue));
-  color: white;
-  text-decoration: none;
-  border-radius: 22px;
-  font-weight: 600;
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-block;
+  margin-top:18px;
+  margin-right:10px;
+  padding:14px 36px;
+  background:linear-gradient(135deg,#22c55e,#86efac);
+  color:white;
+  text-decoration:none;
+  border-radius:40px;
+  font-weight:700;
+}
+.btn:hover{transform:scale(1.06);}
+
+/* ===== LINK CARDS ===== */
+.link-card{
+  background:white;
+  color:#0f172a;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.2);
+}
+.link-card p{color:#475569;font-size:14.5px;}
+.link-card .button{
+  display:inline-block;
+  margin-top:12px;
+  padding:10px 22px;
+  background:linear-gradient(135deg,#22c55e,#86efac);
+  color:white;
+  text-decoration:none;
+  border-radius:22px;
+  font-weight:700;
 }
 
-.footer {
-  display: flex;
-  justify-content: center;
-  margin: 40px 0 50px;
+/* ===== FOOTER ===== */
+.footer{
+  display:flex;
+  justify-content:center;
+  margin:40px 0 50px;
 }
-.back-home {
-  padding: 14px 42px;
-  background: linear-gradient(135deg, var(--blue), var(--light-blue));
-  color: white;
-  text-decoration: none;
-  border-radius: 30px;
-  font-size: 18px;
-  font-weight: 600;
+.back-home{
+  padding:14px 42px;
+  background:linear-gradient(135deg,#22c55e,#86efac);
+  color:white;
+  text-decoration:none;
+  border-radius:30px;
+  font-size:18px;
+  font-weight:700;
 }
 </style>
 </head>
 
 <body>
 
-<div class="particles">
-  <span></span><span></span><span></span>
-  <span></span><span></span><span></span>
+<!-- FLOATING SCIENCE ICONS -->
+<div class="med-icons">
+  <span>🧬</span>
+  <span>⚛️</span>
+  <span>🔬</span>
+  <span>🧪</span>
+  <span>📐</span>
+  <span>➕</span>
 </div>
 
 <div class="logo-top">
-  <img src="https://www.niser.ac.in/sites/default/files/logo.png" alt="NEST Logo">
+  <img src="https://www.nestexam.in/assets/images/logo.png" alt="NEST Logo">
 </div>
 
 <div class="header">
@@ -186,90 +197,105 @@ ul li { margin-bottom: 8px; }
 
 <div class="main">
 
-  <div class="card">
-    <div class="section-title"><div class="icon">🎯</div>Purpose</div>
-    <div class="content">
-      NEST (National Entrance Screening Test) is conducted jointly by NISER Bhubaneswar
-      and CEBS Mumbai for admission to the 5-year Integrated MSc programmes in
-      Basic Sciences.
-    </div>
+<div class="card">
+  <div class="section-title"><div class="icon">🎯</div>Purpose</div>
+  <div class="content">
+    NEST is conducted jointly by NISER Bhubaneswar and CEBS Mumbai for admission
+    to the 5-year Integrated MSc programmes in Basic Sciences.
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">📅</div>Important Dates</div>
+  <div class="content">
+    <ul>
+      <li>Registration Start: January 2026</li>
+      <li>Last Date to Apply: April 2026</li>
+      <li>Admit Card: June 2026</li>
+      <li>Exam Date: June 2026</li>
+      <li>Result: July 2026</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">🎓</div>Eligibility Criteria</div>
+  <div class="content">
+    <ul>
+      <li>Class 12 (Science stream)</li>
+      <li>PCM / PCB subjects</li>
+      <li>Age limit as per NEST rules</li>
+      <li>Indian nationals eligible</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-title"><div class="icon">📝</div>Exam Pattern</div>
+  <div class="content">
+    <ul>
+      <li>Mode: Computer Based Test (CBT)</li>
+      <li>Physics, Chemistry, Mathematics, Biology</li>
+      <li>Objective type questions</li>
+      <li>Section-wise merit</li>
+    </ul>
+  </div>
+ <div class="card">
+  <div class="section-title">
+    <div class="icon">📄</div>
+    Documents Required
   </div>
 
-  <div class="card">
-    <div class="section-title"><div class="icon">📅</div>Important Dates</div>
-    <div class="content">
-      <ul>
-        <li>Registration Start: January 2026</li>
-        <li>Last Date to Apply: April 2026</li>
-        <li>Admit Card: June 2026</li>
-        <li>Exam Date: June 2026</li>
-        <li>Result Declaration: July 2026</li>
-      </ul>
-    </div>
+  <div class="content">
+    <ul>
+      <li>Recent passport-size photograph (scanned)</li>
+      <li>Scanned signature</li>
+      <li>Class 10 mark sheet (Date of Birth proof)</li>
+      <li>Class 12 mark sheet or provisional certificate</li>
+      <li>Valid photo ID (Aadhaar / Passport / School ID)</li>
+      <li>NEST Admit Card (for exam day)</li>
+      <li>Category certificate (SC / ST / OBC / EWS, if applicable)</li>
+      <li>PwD certificate (if applicable)</li>
+      <li>Printout of submitted application form</li>
+    </ul>
   </div>
-
-  <div class="card">
-    <div class="section-title"><div class="icon">🎓</div>Eligibility Criteria</div>
-    <div class="content">
-      <ul>
-        <li>Passed or appearing in Class 12 (Science stream)</li>
-        <li>Subjects: Physics, Chemistry, Mathematics / Biology</li>
-        <li>Indian nationality required</li>
-        <li>Age limit as per official NEST notification</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="section-title"><div class="icon">📝</div>Exam Pattern</div>
-    <div class="content">
-      <ul>
-        <li>Mode: Computer Based Test (CBT)</li>
-        <li>Sections: Physics, Chemistry, Mathematics, Biology</li>
-        <li>Objective type questions</li>
-        <li>Section-wise merit & normalization applied</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="section-title"><div class="icon">📄</div>Documents Required</div>
-    <div class="content">
-      <ul>
-        <li>Class 10 & 12 Mark Sheets</li>
-        <li>Valid Photo ID</li>
-        <li>Passport-size Photograph & Signature</li>
-      </ul>
-    </div>
-  </div>
+</div>
 
   <div class="card">
     <div class="section-title"><div class="icon">📝</div>Registration Guide</div>
-    <div class="content">Step-by-step guide to apply for NEST.</div>
-    <a href="https://www.nestexam.in" target="_blank" class="btn">📝 Registration Portal</a>
-    <a href="https://www.nestexam.in" target="_blank" class="btn">🔗 Official Website</a>
+    <div class="content">Detailed guide to register for the exam.</div>
+    <a href="nest12.pdf" target="_blank" class="btn">📝 Registration Guide (PDF)</a>
+    <a href="https://www.nestexam.in/" target="_blank" class="btn">🔗 Registration Link</a>
   </div>
 
-  <h2>🔗 Important Links</h2>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:15px;">
-    <div class="link-card">
-      <h4>📘 Information Brochure</h4>
-      <p>Official NEST information bulletin.</p>
-      <a class="button" href="https://www.nestexam.in" target="_blank">View</a>
-    </div>
+ 
 
-    <div class="link-card">
-      <h4>📜 Syllabus</h4>
-      <p>NEST syllabus for all subjects.</p>
-      <a class="button" href="https://www.nestexam.in" target="_blank">Download</a>
-    </div>
+<div class="card">
+  <div class="section-title"><div class="icon">📝</div>Registration</div>
+  <a href="https://www.nestexam.in" target="_blank" class="btn">Apply Online</a>
+  <a href="https://www.nestexam.in" target="_blank" class="btn">Official Website</a>
+</div>
 
-    <div class="link-card">
-      <h4>🏫 Participating Institutes</h4>
-      <p>NISER Bhubaneswar & CEBS Mumbai.</p>
-      <a class="button" href="https://www.nestexam.in" target="_blank">Details</a>
-    </div>
+<h2>🔗 Important Links</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:15px;">
+  <div class="link-card">
+    <h4>📘 Information Brochure</h4>
+    <a class="button" href="https://www.nestexam.in" target="_blank">View</a>
   </div>
+  <div class="link-card">
+    <h4>📜 NEST Syllabus</h4>
+    <a class="button" href="https://www.nestexam.in/docs/25/NEST2025_Brochure_Syllabus_v3.pdf" target="_blank">Download</a>
+  </div>
+  <div class="link-card">
+    <h4>🏫 Participating Institutes</h4>
+    <a class="button" href="https://www.nestexam.in" target="_blank">Details</a>
+  </div>
+   <div class="link-card">
+    <h4>⛓️‍💥Tie breaking</h4>
+    <a class="button" href="https://www.nestexam.in/docs/25/NEST2025_Brochure_Syllabus_v3.pdf" target="_blank">Details</a>
+  </div>
+
+
 </div>
 
 <footer class="footer">
