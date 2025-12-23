@@ -10,14 +10,12 @@
   --gold:#fbbf24;
   --orange:#f97316;
 }
-
-/* ===== BODY BACKGROUND (IMAGE + COLOR, NO OVERLAY) ===== */
 body{
   margin:0;
   font-family:"Segoe UI",Roboto,Arial,sans-serif;
 
-  background-image:url("comedk13.jpg");
-  background-color:#fbbf24; /* fallback */
+  background-image:url("comedk13.png");
+  background-color:#fbbf24;
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
@@ -27,7 +25,6 @@ body{
   overflow-x:hidden;
 }
 
-/* ===== FLOATING ICONS ===== */
 .med-icons span{
   position:fixed;
   font-size:26px;
@@ -48,8 +45,6 @@ body{
   50%{transform:translateX(15px) rotate(180deg);}
   100%{bottom:110%;opacity:0;transform:translateX(-15px) rotate(360deg);}
 }
-
-/* ===== LOGO ===== */
 .logo-top{
   text-align:center;
   padding:18px 0;
@@ -61,7 +56,6 @@ body{
   border-radius:16px;
 }
 
-/* ===== HEADER ===== */
 .header{
   text-align:center;
   padding:55px 20px 75px;
@@ -77,14 +71,12 @@ body{
   color:#9a3412;
 }
 
-/* ===== MAIN ===== */
 .main{
   max-width:900px;
   margin:-45px auto 60px;
   padding:0 16px;
 }
 
-/* ===== CARD ===== */
 .card{
   background:rgba(255,255,255,0.92);
   border-radius:20px;
@@ -137,7 +129,6 @@ ul li{margin-bottom:8px;}
 }
 .btn:hover{transform:scale(1.06);}
 
-/* ===== LINK CARDS ===== */
 .link-card{
   background:white;
   color:#1e293b;
@@ -160,7 +151,6 @@ ul li{margin-bottom:8px;}
   font-weight:700;
 }
 
-/* ===== FOOTER ===== */
 .footer{
   display:flex;
   justify-content:center;
@@ -180,7 +170,6 @@ ul li{margin-bottom:8px;}
 
 <body>
 
-<!-- FLOATING ICONS -->
 <div class="med-icons">
   <span>🧮</span>
   <span>⚙️</span>
@@ -201,7 +190,6 @@ ul li{margin-bottom:8px;}
 
 <div class="main">
 
-<!-- PURPOSE -->
 <div class="card">
   <div class="section-title"><div class="icon">🎯</div>Purpose</div>
   <div class="content">
@@ -210,7 +198,6 @@ ul li{margin-bottom:8px;}
   </div>
 </div>
 
-<!-- IMPORTANT DATES -->
 <div class="card">
   <div class="section-title"><div class="icon">📅</div>Important Dates</div>
   <div class="content">
@@ -224,7 +211,6 @@ ul li{margin-bottom:8px;}
   </div>
 </div>
 
-<!-- ELIGIBILITY -->
 <div class="card">
   <div class="section-title"><div class="icon">🎓</div>Eligibility Criteria</div>
   <div class="content">
@@ -236,7 +222,6 @@ ul li{margin-bottom:8px;}
   </div>
 </div>
 
-<!-- EXAM PATTERN -->
 <div class="card">
   <div class="section-title"><div class="icon">📝</div>Exam Pattern</div>
   <div class="content">
@@ -249,7 +234,6 @@ ul li{margin-bottom:8px;}
   </div>
 </div>
 
-<!-- DOCUMENTS REQUIRED -->
 <div class="card">
   <div class="section-title"><div class="icon">📄</div>Documents Required</div>
   <div class="content">
@@ -266,14 +250,14 @@ ul li{margin-bottom:8px;}
   </div>
 </div>
 
-<!-- REGISTRATION -->
-<div class="card">
-  <div class="section-title"><div class="icon">📝</div>Registration</div>
-  <a href="https://www.comedk.org" target="_blank" class="btn">Apply Online</a>
-  <a href="https://www.comedk.org" target="_blank" class="btn">Official Website</a>
-</div>
 
-<!-- IMPORTANT LINKS -->
+   <div class="card">
+    <div class="section-title"><div class="icon">📝</div>Registration Guide</div>
+    <div class="content">Step-by-step guide to apply for COMED-K.</div>
+    <a href="comedk13.pdf" target="_blank" class="btn">📝 Registration Guide (PDF)</a>
+    <a href="https://www.comedk.org" target="_blank" class="btn">🔗 Registration Link</a>
+  </div>
+
 <h2>🔗 Important Links</h2>
 <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:15px;">
   <div class="link-card">
@@ -283,13 +267,22 @@ ul li{margin-bottom:8px;}
   </div>
   <div class="link-card">
     <h4>📜 COMEDK Syllabus</h4>
-    <p>Latest syllabus PDF</p>
-    <a class="button" href="https://www.comedk.org" target="_blank">Download</a>
+    <p>Chemistry syllabus PDF</p>
+    <a class="button" href="https://www.comedk.org/uploads/chemistry-syllabus-2025.pdf" target="_blank">Download</a>
+    <p>Mathematics syllabus PDF</p>
+    <a class="button" href="https://www.comedk.org/uploads/Mathematics-syllabus-2025.pdf" target="_blank">Download</a>
+  <p>Physics syllabus PDF</p>
+    <a class="button" href="https://www.comedk.org/uploads/physics-syllabus-2025.pdf" target="_blank">Download</a>
   </div>
   <div class="link-card">
-    <h4>🏫 Participating Colleges</h4>
-    <p>List of member institutions</p>
-    <a class="button" href="https://www.comedk.org" target="_blank">Details</a>
+    <h4>🏫 Seat Matrix</h4>
+    <p>Number of comedk seats availaable in different instituitions along with the course fees💸</p>
+    <a class="button" href="https://www.comedk.org/uploads/Revised-Final-COMEDK-Engineering-Seat-Availability-and-Fee-Notified-on-10.07.24-Version-1.1.pdf.pdf" target="_blank">Details</a>
+  </div>
+  <div class="link-card">
+   <h4>🏫 Comedk Counselling</h4>
+    <p>Comedk counselling.</p>
+    <a class="button" href="https://www.comedk.org/counselling-document-2025" target="_blank">Visit</a>
   </div>
 </div>
 
@@ -301,3 +294,4 @@ ul li{margin-bottom:8px;}
 
 </body>
 </html>
+
