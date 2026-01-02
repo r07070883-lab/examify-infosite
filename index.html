@@ -16,6 +16,12 @@ body {
   background: radial-gradient(circle at top, #0f172a, #020617 50%, #020617 100%);
   color: #0f172a;
 }
+.progress-message {
+  margin-top: 4px;
+  font-size: 0.75rem;
+  color: #16a34a;
+  text-align: center;
+}
 header {
   background: linear-gradient(90deg, #1d4ed8, #2563eb, #1d4ed8);
   color: #f9fafb;
@@ -329,6 +335,24 @@ h1 {
 .checklist-item input {
   cursor: pointer;
 }
+/* Account section (right side of top bar) */
+.account-section {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #e5e7eb;
+  font-size: 0.8rem;
+}
+.account-username {
+  font-weight: 600;
+}
+.account-link {
+  color: #38bdf8;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
 @media (max-width: 700px) {
   header {
     font-size: 1.6rem;
@@ -363,9 +387,14 @@ h1 {
     </select>
     <input type="text" id="search" placeholder="Search exams..." />
   </div>
-  <div class="view-buttons">
-    <button class="pill-btn active" id="btnAll">All Exams</button>
-    <button class="pill-btn" id="btnMy">My Exams</button>
+
+  <div style="display:flex; align-items:center; gap:12px;">
+    <div class="view-buttons">
+      <button class="pill-btn active" id="btnAll">All Exams</button>
+      <button class="pill-btn" id="btnMy">My Exams</button>
+    </div>
+    <!-- Account section -->
+    <div class="account-section" id="accountSection"></div>
   </div>
 </div>
 
@@ -383,10 +412,7 @@ h1 {
 
 <script>
 // Exams data for ONLY the selected exams.
-// Format: [name, categoryKey, logoFile, linkFile, examDate(YYYY-MM-DD), regStatus, regCloseDate(YYYY-MM-DD)]
-// File names and image names are kept EXACTLY as in your second snippet.
 const exams = [
-  // Engineering
   ["JEE Main", "engineering", "jee-main.jpg", "jee-main2.html", "2026-01-15", "Open", "2025-12-20"],
   ["JEE Advanced", "engineering", "jee-advanced.png", "jee-adv.html", "2026-05-26", "Upcoming", "2026-04-30"],
   ["BITSAT", "engineering", "bitsat.png", "bitsat.html", "2026-05-10", "Upcoming", "2026-04-15"],
@@ -395,18 +421,12 @@ const exams = [
   ["WBJEE", "engineering", "wbjee.jpg", "wbjee.html", "2026-03-15", "Upcoming", "2026-02-20"],
   ["MET", "engineering", "met.jpg", "met1.html", "2026-04-05", "Upcoming", "2026-03-10"],
   ["UGEE", "engineering", "ugee.jpg", "ugee.html", "2026-03-25", "Upcoming", "2026-03-01"],
-
-  // Both (Engineering + something)
   ["KCET", "both", "kcet.jpg", "kcet0.html", "2026-04-25", "Upcoming", "2026-03-31"],
   ["TS EAMCET", "both", "ts-eamcet.jpg", "tseamcet.html", "2026-05-02", "Upcoming", "2026-04-10"],
   ["COMEDK", "both", "comedk.jpg", "comedk.html", "2026-05-15", "Upcoming", "2026-04-20"],
   ["AP-EAMCET", "both", "apeamcet.jpg", "apeapcet.html", "2026-04-30", "Upcoming", "2026-04-05"],
   ["MHTCET", "both", "mhtcet.jpg", "mhtcet.html", "2026-05-05", "Upcoming", "2026-04-15"],
-
-  // Medical
   ["NEET UG", "medical", "jee-main.jpg", "neet.html", "2026-05-05", "Upcoming", "2026-04-10"],
-
-  // Others
   ["CUET", "others", "jee-main.jpg", "cuet.html", "2026-04-01", "Upcoming", "2026-03-10"],
   ["IAT (IISER)", "others", "iat.png", "iat.html", "2026-04-20", "Upcoming", "2026-03-25"],
   ["NEST", "others", "nest.jpg", "nest.html", "2026-06-05", "Upcoming", "2026-05-10"],
@@ -415,12 +435,9 @@ const exams = [
   ["NATA", "others", "nata.jpg", "nata.html", "2026-02-15", "Upcoming", "2026-01-25"]
 ];
 
-const STORAGE_KEY = "myExamSelections";
-const CHECKLIST_KEY = "examChecklists";
-
-// Load from localStorage (if present) so selections/checklists persist.[web:4][web:9]
-let myExams = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-let checklistState = JSON.parse(localStorage.getItem(CHECKLIST_KEY) || "{}");
+const STORAGE_KEY_BASE = "myExamSelections_";
+const CHECKLIST_KEY_BASE = "examChecklists_";
+const CURRENT_USER_KEY = "examExplorerCurrentUser";
 
 const allGrid = document.getElementById("allGrid");
 const myGrid = document.getElementById("myGrid");
@@ -431,6 +448,55 @@ const btnMy = document.getElementById("btnMy");
 const allSection = document.getElementById("allSection");
 const mySection = document.getElementById("mySection");
 const sectionTitle = document.getElementById("sectionTitle");
+const accountSection = document.getElementById("accountSection");
+
+function getCurrentUser() {
+  return localStorage.getItem(CURRENT_USER_KEY) || null;
+}
+function requireLogin() {
+  alert("You must login to use 'My Exams'. You will be redirected to the login page.");
+  window.location.href = "login.html";
+}
+function getStorageKeysForUser(user) {
+  const suffix = user ? user : "guest";
+  return {
+    myExamsKey: STORAGE_KEY_BASE + suffix,
+    checklistKey: CHECKLIST_KEY_BASE + suffix
+  };
+}
+
+// initial load of keys and data for current user
+let currentUser = getCurrentUser();
+let keys = getStorageKeysForUser(currentUser);
+let myExams = JSON.parse(localStorage.getItem(keys.myExamsKey) || "[]");
+let checklistState = JSON.parse(localStorage.getItem(keys.checklistKey) || "{}");
+
+function renderAccountSection() {
+  currentUser = getCurrentUser();
+  if (!currentUser) {
+    accountSection.innerHTML =
+      '<span>Not logged in</span> | <span class="account-link" id="loginLink">Login</span>';
+    const loginLink = document.getElementById("loginLink");
+    if (loginLink) {
+      loginLink.addEventListener("click", () => {
+        window.location.href = "login.html";
+      });
+    }
+  } else {
+    accountSection.innerHTML =
+      '<span class="account-username">' +
+      currentUser +
+      '</span> | <span class="account-link" id="logoutLink">Logout</span>';
+    const logoutLink = document.getElementById("logoutLink");
+    if (logoutLink) {
+      logoutLink.addEventListener("click", () => {
+        // only clear current user flag; keep data keys [web:4][web:9][web:160]
+        localStorage.removeItem(CURRENT_USER_KEY);
+        location.reload();
+      });
+    }
+  }
+}
 
 function daysBetween(dateStr) {
   const today = new Date();
@@ -438,16 +504,13 @@ function daysBetween(dateStr) {
   const diff = target - today;
   return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
 }
-
 function getStatusClass(status) {
   const s = status.toLowerCase();
   if (s === "open") return "open";
   if (s === "closed") return "closed";
   return "upcoming";
 }
-
 function formatCategory(key, rawCategory) {
-  // Keep your visible category text similar to the second snippet.
   if (key === "engineering") return "Engineering";
   if (key === "medical") return "Medical";
   if (key === "both") return rawCategory || "Engineering / Medical";
@@ -455,7 +518,7 @@ function formatCategory(key, rawCategory) {
   return rawCategory || "Others";
 }
 
-// All Exams cards (no checklist, no progress circle)
+// All Exams
 function renderAllCards(targetGrid, list) {
   targetGrid.innerHTML = "";
   list.forEach((exam, index) => {
@@ -477,7 +540,9 @@ function renderAllCards(targetGrid, list) {
       <div class="category">${formatCategory(catKey)}</div>
       <div class="status-row">
         <span class="badge ${statusClass}">${regStatus}</span>
-        <span class="countdown">${d} days to exam</span>
+        <span class="countdown" data-exam-date="${examDate}">
+          <span class="days-left">${d}</span> days to exam
+        </span>
       </div>
       <div class="status-row">
         <span class="countdown">Registration closes in ${regDays} days</span>
@@ -491,13 +556,19 @@ function renderAllCards(targetGrid, list) {
     `;
 
     const addBtn = card.querySelector(".button-add");
-    addBtn.addEventListener("click", () => toggleMyExam(name, addBtn));
+    addBtn.addEventListener("click", () => {
+      if (!getCurrentUser()) {
+        requireLogin();
+        return;
+      }
+      toggleMyExam(name, addBtn);
+    });
 
     targetGrid.appendChild(card);
   });
 }
 
-// Checklist model
+// checklist
 const defaultSteps = [
   "Create account / sign up",
   "Fill application form",
@@ -513,23 +584,21 @@ function getChecklistForExam(name) {
   }
   return checklistState[name];
 }
-
 function saveChecklist() {
-  localStorage.setItem(CHECKLIST_KEY, JSON.stringify(checklistState));
+  keys = getStorageKeysForUser(getCurrentUser());
+  localStorage.setItem(keys.checklistKey, JSON.stringify(checklistState));
 }
-
 function calcProgressPercent(flags) {
   const total = flags.length;
   const done = flags.filter(Boolean).length;
   return total === 0 ? 0 : Math.round((done / total) * 100);
 }
-
 function setCircleProgress(circleEl, percent) {
   const degrees = Math.round((percent / 100) * 360);
   circleEl.style.background = `conic-gradient(#22c55e ${degrees}deg, #e5e7eb 0deg)`;
 }
 
-// My Exams cards (with circular progress + checklist)
+// My Exams
 function renderMyCards(targetGrid, list) {
   targetGrid.innerHTML = "";
   list.forEach((exam, index) => {
@@ -562,7 +631,9 @@ function renderMyCards(targetGrid, list) {
       <div class="category">${formatCategory(catKey)}</div>
       <div class="status-row">
         <span class="badge ${statusClass}">${regStatus}</span>
-        <span class="countdown">${d} days to exam</span>
+        <span class="countdown" data-exam-date="${examDate}">
+          <span class="days-left">${d}</span> days to exam
+        </span>
       </div>
       <div class="status-row">
         <span class="countdown">Registration closes in ${regDays} days</span>
@@ -573,6 +644,7 @@ function renderMyCards(targetGrid, list) {
             <div class="progress-inner">${percent}%</div>
           </div>
           <div class="progress-label">Registration progress</div>
+          <div class="progress-message"></div>
         </div>
         <div class="checklist">
           <div class="checklist-title">My Registration Steps</div>
@@ -587,8 +659,13 @@ function renderMyCards(targetGrid, list) {
 
     const circle = card.querySelector(".progress-ring");
     const inner = card.querySelector(".progress-inner");
+    const msgEl = card.querySelector(".progress-message");
+
     setCircleProgress(circle, percent);
     inner.textContent = percent + "%";
+    msgEl.textContent = percent === 100
+      ? "All the very best for your exam (TEAM EXAMIFY). For further queries, contact : Aditya Bagewadi : 782980957 (Anytime, Anywhere)"
+      : "";
 
     card.querySelectorAll(".checklist-item input").forEach(input => {
       input.addEventListener("change", () => {
@@ -600,6 +677,9 @@ function renderMyCards(targetGrid, list) {
         const newPercent = calcProgressPercent(currentFlags);
         setCircleProgress(circle, newPercent);
         inner.textContent = newPercent + "%";
+        msgEl.textContent = newPercent === 100
+          ? "All the very best for your exam (TEAM EXAMIFY). For further queries, contact : Aditya Bagewadi : 782980957 (Anytime, Anywhere)"
+          : "";
       });
     });
 
@@ -608,6 +688,10 @@ function renderMyCards(targetGrid, list) {
 }
 
 function toggleMyExam(name, btn) {
+  if (!getCurrentUser()) {
+    requireLogin();
+    return;
+  }
   if (myExams.includes(name)) {
     myExams = myExams.filter(n => n !== name);
     btn.classList.remove("added");
@@ -617,7 +701,8 @@ function toggleMyExam(name, btn) {
     btn.classList.add("added");
     btn.textContent = "Added ✓";
   }
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(myExams));
+  keys = getStorageKeysForUser(getCurrentUser());
+  localStorage.setItem(keys.myExamsKey, JSON.stringify(myExams));
   renderMySection();
 }
 
@@ -626,7 +711,7 @@ function applyFilters() {
   const searchValue = searchInput.value.toLowerCase();
 
   document.querySelectorAll("#allGrid .card").forEach(card => {
-    const cardCat = card.dataset.category; // engineering / medical / both / others
+    const cardCat = card.dataset.category;
     const cardName = card.dataset.name;
     const matchesSearch = cardName.includes(searchValue);
 
@@ -649,13 +734,16 @@ function renderAllSection() {
   renderAllCards(allGrid, exams);
   applyFilters();
 }
-
 function renderMySection() {
+  if (!getCurrentUser()) {
+    myGrid.innerHTML = "<p style='color:#e5e7eb; text-align:center;'>Please login to view your My Exams list.</p>";
+    return;
+  }
   const filtered = exams.filter(e => myExams.includes(e[0]));
   renderMyCards(myGrid, filtered);
 }
 
-// Switch All / My
+// Tab switching
 btnAll.addEventListener("click", () => {
   btnAll.classList.add("active");
   btnMy.classList.remove("active");
@@ -664,6 +752,10 @@ btnAll.addEventListener("click", () => {
   sectionTitle.textContent = "All Exams";
 });
 btnMy.addEventListener("click", () => {
+  if (!getCurrentUser()) {
+    requireLogin();
+    return;
+  }
   btnMy.classList.add("active");
   btnAll.classList.remove("active");
   allSection.classList.remove("active");
@@ -675,9 +767,30 @@ btnMy.addEventListener("click", () => {
 categorySelect.addEventListener("change", applyFilters);
 searchInput.addEventListener("input", applyFilters);
 
+// Live countdown updater for "days to exam"
+function updateCountdowns() {
+  const now = new Date();
+  document.querySelectorAll(".countdown[data-exam-date]").forEach(el => {
+    const dateStr = el.getAttribute("data-exam-date");
+    const target = new Date(dateStr + "T00:00:00");
+    const diff = target - now;
+    let daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    if (daysLeft < 0) daysLeft = 0;
+    const span = el.querySelector(".days-left");
+    if (span) {
+      span.textContent = daysLeft;
+    }
+  });
+}
+
 // Initial render
+renderAccountSection();
 renderAllSection();
 renderMySection();
+
+// Start countdown after cards exist
+updateCountdowns();
+setInterval(updateCountdowns, 1000);
 </script>
 </body>
 </html>
