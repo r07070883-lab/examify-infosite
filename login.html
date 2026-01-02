@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login | Exam Explorer</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top, #0f172a, #020617 50%, #020617 100%);
+  }
+  .container {
+    background: #0b1220;
+    padding: 30px 26px;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.9);
+    max-width: 360px;
+    width: 100%;
+    color: #e5e7eb;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 6px;
+    font-size: 1.6rem;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #9ca3af;
+    margin-bottom: 18px;
+  }
+  label {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    margin-top: 4px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid #1d4ed8;
+    background: #020617;
+    color: #e5e7eb;
+    outline: none;
+  }
+  input:focus {
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.7);
+  }
+  .btn {
+    width: 100%;
+    margin-top: 16px;
+    padding: 9px 0;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #f9fafb;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.65);
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+  .link-row {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    text-align: center;
+    color: #9ca3af;
+  }
+  a {
+    color: #60a5fa;
+    text-decoration: none;
+  }
+  .msg {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+  .msg.error {
+    color: #fca5a5;
+  }
+  .msg.success {
+    color: #4ade80;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Login</h1>
+  <div class="subtitle">Login to manage your <b>My exams</b> list</div>
+
+  <form id="authForm">
+    <label for="username">Username</label>
+    <input id="username" type="text" required />
+
+    <label for="password">Password</label>
+    <input id="password" type="password" required />
+
+    <button type="submit" class="btn">Login</button>
+  </form>
+
+  <div class="link-row">
+  Not having account, create a new one
+</div>
+
+
+  <div id="message" class="msg"></div>
+</div>
+
+<script>
+// Very simple localStorage-based auth (front-end only). [web:20][web:24][web:32]
+const USERS_KEY = "examExplorerUsers";
+const CURRENT_USER_KEY = "examExplorerCurrentUser";
+
+function loadUsers() {
+  return JSON.parse(localStorage.getItem(USERS_KEY) || "{}");
+}
+function saveUsers(users) {
+  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+}
+function setCurrentUser(username) {
+  localStorage.setItem(CURRENT_USER_KEY, username);
+}
+function loginOrRegister(username, password) {
+  const users = loadUsers();
+  if (!users[username]) {
+    users[username] = { password: password };
+    saveUsers(users);
+    return { created: true };
+  }
+  if (users[username].password === password) {
+    return { created: false };
+  }
+  return { error: "Incorrect password for this username." };
+}
+
+document.getElementById("authForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const uname = document.getElementById("username").value.trim();
+  const pw = document.getElementById("password").value.trim();
+  const msgEl = document.getElementById("message");
+  if (!uname || !pw) {
+    msgEl.textContent = "Please enter both username and password.";
+    msgEl.className = "msg error";
+    return;
+  }
+  const result = loginOrRegister(uname, pw);
+  if (result.error) {
+    msgEl.textContent = result.error;
+    msgEl.className = "msg error";
+    return;
+  }
+  setCurrentUser(uname);
+  msgEl.textContent = result.created
+    ? "Account created and logged in. Redirecting..."
+    : "Login successful. Redirecting...";
+  msgEl.className = "msg success";
+  setTimeout(() => {
+    window.location.href = "index.html"; // change to your main page filename
+  }, 800);
+});
+</script>
+</body>
+</html>
