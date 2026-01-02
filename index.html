@@ -1,335 +1,683 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exam Explorer</title>
-  <style>
-    body {
-      font-family: "Poppins", sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to bottom right, #ffe4b3, #ffd6cc);
-    }
-
-    header {
-      background: linear-gradient(90deg, #ff0000, #ffcc00);
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-      font-size: 2rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .quote {
-      text-align: center;
-      font-style: italic;
-      font-weight: 600;
-      color: #b30000;
-      margin: 10px 0 20px;
-      font-size: 1.1rem;
-    }
-
-    .filter-bar {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      padding: 10px 20px;
-    }
-
-    label {
-      font-weight: 600;
-      color: #b30000;
-      margin-right: 10px;
-    }
-
-    select {
-      padding: 8px 12px;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: 2px solid #ffcc00;
-      background-color: white;
-      color: #b30000;
-      cursor: pointer;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    select:hover {
-      background-color: #fff2cc;
-    }
-
-    h1 {
-      text-align: center;
-      color: #b30000;
-      font-size: 2rem;
-      margin-top: 0;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      padding: 0 40px 60px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      padding: 20px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 20px rgba(255, 0, 0, 0.3);
-    }
-
-    .logo {
-      width: 70px;
-      height: 70px;
-      object-fit: contain;
-      margin-bottom: 10px;
-    }
-
-    .exam-name {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #111827;
-    }
-
-    .category {
-      font-size: 0.9rem;
-      color: #6b7280;
-      margin-top: 5px;
-    }
-
-    .button {
-      display: inline-block;
-      margin-top: 12px;
-      background: linear-gradient(90deg, #ff0000, #ffcc00);
-      color: white;
-      padding: 8px 14px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 600;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 3px 10px rgba(255, 0, 0, 0.3);
-    }
-
-    @media (max-width: 500px) {
-      h1 {
-        font-size: 1.6rem;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Exam Explorer</title>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #0f172a, #020617 50%, #020617 100%);
+  color: #0f172a;
+}
+header {
+  background: linear-gradient(90deg, #1d4ed8, #2563eb, #1d4ed8);
+  color: #f9fafb;
+  text-align: center;
+  padding: 18px 0;
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.8);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.quote {
+  text-align: center;
+  font-style: italic;
+  font-weight: 600;
+  color: #bfdbfe;
+  margin: 10px 0 18px;
+  font-size: 1.05rem;
+}
+.top-bar {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 10px 16px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+label {
+  font-weight: 600;
+  color: #e5e7eb;
+  font-size: 0.9rem;
+}
+select,
+input[type="text"] {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  border: 1px solid #1d4ed8;
+  background: rgba(15, 23, 42, 0.95);
+  color: #e5e7eb;
+  outline: none;
+  transition: 0.25s ease;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.35);
+  min-width: 160px;
+}
+select:focus,
+input[type="text"]:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.75);
+  background: rgba(15, 23, 42, 1);
+}
+.view-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.pill-btn {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(248, 250, 252, 0.9);
+  color: #0f172a;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+.pill-btn.active,
+.pill-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border-color: transparent;
+  color: #f9fafb;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.7);
+}
+h1 {
+  text-align: center;
+  color: #e5e7eb;
+  font-size: 1.7rem;
+  margin: 14px 0 18px;
+}
+.section {
+  display: none;
+}
+.section.active {
+  display: block;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0 24px 40px;
+  max-width: 1300px;
+  margin: 0 auto 40px;
+}
+/* Light gradient cards */
+.card {
+  background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
+  border-radius: 20px;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.3);
+  padding: 18px 16px 16px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transform: translateY(10px);
+  opacity: 0;
+  animation: cardIn 0.45s ease forwards;
+}
+.card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.4);
+  border-color: rgba(59, 130, 246, 0.9);
+}
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 6px;
+  box-shadow: 0 0 16px rgba(148, 163, 184, 0.8);
+  margin-bottom: 4px;
+}
+.exam-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111827;
+  text-align: center;
+}
+.category {
+  font-size: 0.85rem;
+  color: #4b5563;
+  text-align: center;
+}
+.status-row {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  align-items: center;
+  font-size: 0.8rem;
+}
+.badge {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border: 1px solid transparent;
+}
+.badge.upcoming {
+  background: rgba(59, 130, 246, 0.16);
+  border-color: rgba(59, 130, 246, 0.7);
+  color: #1d4ed8;
+}
+.badge.open {
+  background: rgba(34, 197, 94, 0.16);
+  border-color: rgba(34, 197, 94, 0.8);
+  color: #15803d;
+}
+.badge.closed {
+  background: rgba(239, 68, 68, 0.16);
+  border-color: rgba(239, 68, 68, 0.85);
+  color: #b91c1c;
+}
+.countdown {
+  font-size: 0.8rem;
+  color: #111827;
+  margin-top: 2px;
+}
+.button-row {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+}
+.button-link {
+  display: inline-block;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.6);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.button-link:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.9);
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+.button-add {
+  border: none;
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111827;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  transition: 0.18s ease;
+  width: 100%;
+  max-width: 170px;
+}
+.button-add:hover {
+  background: #e0f2fe;
+  border-color: #38bdf8;
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.45);
+}
+.button-add.added {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-color: transparent;
+  color: #ecfdf5;
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.85);
+}
+.button-add.added:hover {
+  transform: translateY(-1px);
+}
+/* My Exams: circular progress + checklist */
+.my-exam-body {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.progress-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.progress-ring {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: conic-gradient(#22c55e 0deg, #e5e7eb 0deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.7);
+}
+.progress-inner {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #111827;
+}
+.progress-label {
+  font-size: 0.7rem;
+  color: #4b5563;
+  text-align: center;
+}
+.checklist {
+  flex: 1;
+  min-width: 160px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 8px 10px;
+  box-shadow: 0 4px 12px rgba(148, 163, 184, 0.6);
+}
+.checklist-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 4px;
+}
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.checklist-item input {
+  cursor: pointer;
+}
+@media (max-width: 700px) {
+  header {
+    font-size: 1.6rem;
+    padding: 14px 0;
+  }
+  h1 {
+    font-size: 1.45rem;
+  }
+  .grid {
+    padding: 0 16px 32px;
+  }
+  .top-bar {
+    padding: 10px 12px 0;
+    justify-content: center;
+  }
+}
+</style>
 </head>
 <body>
+<header>🎓 Exam Explorer</header>
+<div class="quote">"Patience = Success"</div>
 
-  <header>🎓 Exam Explorer</header>
-  <div class="quote">"Patience = Success"</div>
-
+<div class="top-bar">
   <div class="filter-bar">
     <label for="category">Sort by Category:</label>
-    <select id="category" onchange="filterExams()">
+    <select id="category">
       <option value="all">All</option>
       <option value="engineering">Engineering</option>
       <option value="medical">Medical</option>
       <option value="both">Both</option>
       <option value="others">Others</option>
     </select>
+    <input type="text" id="search" placeholder="Search exams..." />
   </div>
-
-  <div class="grid" id="examGrid">
-    <!-- Engineering -->
-    <div class="card" data-category="engineering">
-      <img src="jee-main.jpg" class="logo" alt="JEE Main">
-      <div class="exam-name">JEE Main</div>
-      <div class="category">Engineering</div>
-      <a href="jee-main2.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="engineering">
-      <img src="jee-advanced.png" class="logo" alt="JEE Advanced">
-      <div class="exam-name">JEE Advanced</div>
-      <div class="category">Engineering</div>
-      <a href="jee-adv.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="engineering">
-      <img src="bitsat.png" class="logo" alt="BITSAT">
-      <div class="exam-name">BITSAT</div>
-      <div class="category">Engineering</div>
-      <a href="bitsat.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="engineering">
-      <img src="vitee.jpg" class="logo" alt="VITEEE">
-      <div class="exam-name">VITEEE</div>
-      <div class="category">Engineering</div>
-      <a href="viteee.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="engineering">
-      <img src="srmjeee.png" class="logo" alt="SRMJEEE">
-      <div class="exam-name">SRMJEEE</div>
-      <div class="category">Engineering</div>
-      <a href="srmjeee.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="engineering">
-      <img src="wbjee.jpg" class="logo" alt="WBJEE">
-      <div class="exam-name">WBJEE</div>
-      <div class="category">Engineering</div>
-      <a href="wbjee.html" class="button">View Details</a>
-    </div>
-
-    <!-- Both -->
-    <div class="card" data-category="both">
-      <img src="kcet.jpg" class="logo" alt="KCET">
-      <div class="exam-name">KCET</div>
-      <div class="category">Engineering / Medical</div>
-      <a href="kcet0.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="both">
-      <img src="ts-eamcet.jpg" class="logo" alt="TS EAMCET">
-      <div class="exam-name">TS EAMCET</div>
-      <div class="category">Engineering / Medical</div>
-      <a href="tseamcet.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="engineering">
-      <img src="met.jpg" class="logo" alt="MET">
-      <div class="exam-name">MET</div>
-      <div class="category">Engineering</div>
-      <a href="met1.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="both">
-      <img src="comedk.jpg" class="logo" alt="COMEDK">
-      <div class="exam-name">COMEDK</div>
-      <div class="category">Engineering / Dental</div>
-      <a href="comedk.html" class="button">View Details</a>
-    </div>
-
-    <!-- Medical -->
-    <div class="card" data-category="medical">
-      <img src="jee-main.jpg" class="logo" alt="NEET UG">
-      <div class="exam-name">NEET UG</div>
-      <div class="category">Medical</div>
-      <a href="neet.html" class="button">View Details</a>
-    </div>
-
-    <!-- Others -->
-    <div class="card" data-category="others">
-      <img src="jee-main.jpg" class="logo" alt="CUET">
-      <div class="exam-name">CUET</div>
-      <div class="category">Any Field</div>
-      <a href="cuet.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="others">
-      <img src="iat.png" class="logo" alt="IAT">
-      <div class="exam-name">IAT (IISER)</div>
-      <div class="category">Research</div>
-      <a href="iat.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="others">
-      <img src="nest.jpg" class="logo" alt="NEST">
-      <div class="exam-name">NEST</div>
-      <div class="category">Research</div>
-      <a href="nest.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="both">
-      <img src="apeamcet.jpg" class="logo" alt="AP-EAMCET">
-      <div class="exam-name">AP-EAMCET</div>
-      <div class="category">Engineering / Pharmacy</div>
-      <a href="apeapcet.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="others">
-      <img src="nda" class="logo" alt="NDA">
-      <div class="exam-name">NDA</div>
-      <div class="category">Defence</div>
-      <a href="nda.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="engineering">
-      <img src="ugee.jpg" class="logo" alt="UGEE">
-      <div class="exam-name">UGEE</div>
-      <div class="category">Engineering</div>
-      <a href="ugee.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="others">
-      <img src="uceed.png" class="logo" alt="UCEED">
-      <div class="exam-name">UCEED</div>
-      <div class="category">Design</div>
-      <a href="uceed.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="others">
-      <img src="nata.jpg" class="logo" alt="NATA">
-      <div class="exam-name">NATA</div>
-      <div class="category">Architecture</div>
-      <a href="nata.html" class="button">View Details</a>
-    </div>
-
-    <div class="card" data-category="both">
-      <img src="mhtcet.jpg" class="logo" alt="CLAT">
-      <div class="exam-name">MHTCET</div>
-      <div class="category">engineering/pharmacy</div>
-      <a href="mhtcet.html" class="button">View Details</a>
-    </div>
-
+  <div class="view-buttons">
+    <button class="pill-btn active" id="btnAll">All Exams</button>
+    <button class="pill-btn" id="btnMy">My Exams</button>
   </div>
+</div>
 
-  <script>
-    function filterExams() {
-      const category = document.getElementById("category").value;
-      const exams = document.querySelectorAll(".card");
+<h1 id="sectionTitle">All Exams</h1>
 
-      exams.forEach(exam => {
-        const dataCat = exam.getAttribute("data-category");
-        if (category === "all") {
-          exam.style.display = "block";
-        } else if (category === "both" && dataCat.includes("both")) {
-          exam.style.display = "block";
-        } else if (category === "engineering" && dataCat.includes("engineering")) {
-          exam.style.display = "block";
-        } else if (category === "medical" && dataCat.includes("medical")) {
-          exam.style.display = "block";
-        } else if (category === "others" && dataCat === "others") {
-          exam.style.display = "block";
-        } else {
-          exam.style.display = "none";
-        }
+<!-- All Exams Section -->
+<div class="section active" id="allSection">
+  <div class="grid" id="allGrid"></div>
+</div>
+
+<!-- My Exams Section -->
+<div class="section" id="mySection">
+  <div class="grid" id="myGrid"></div>
+</div>
+
+<script>
+// Exams data for ONLY the selected exams.
+// Format: [name, categoryKey, logoFile, linkFile, examDate(YYYY-MM-DD), regStatus, regCloseDate(YYYY-MM-DD)]
+// File names and image names are kept EXACTLY as in your second snippet.
+const exams = [
+  // Engineering
+  ["JEE Main", "engineering", "jee-main.jpg", "jee-main2.html", "2026-01-15", "Open", "2025-12-20"],
+  ["JEE Advanced", "engineering", "jee-advanced.png", "jee-adv.html", "2026-05-26", "Upcoming", "2026-04-30"],
+  ["BITSAT", "engineering", "bitsat.png", "bitsat.html", "2026-05-10", "Upcoming", "2026-04-15"],
+  ["VITEEE", "engineering", "vitee.jpg", "viteee.html", "2026-04-20", "Upcoming", "2026-03-30"],
+  ["SRMJEEE", "engineering", "srmjeee.png", "srmjeee.html", "2026-04-10", "Upcoming", "2026-03-25"],
+  ["WBJEE", "engineering", "wbjee.jpg", "wbjee.html", "2026-03-15", "Upcoming", "2026-02-20"],
+  ["MET", "engineering", "met.jpg", "met1.html", "2026-04-05", "Upcoming", "2026-03-10"],
+  ["UGEE", "engineering", "ugee.jpg", "ugee.html", "2026-03-25", "Upcoming", "2026-03-01"],
+
+  // Both (Engineering + something)
+  ["KCET", "both", "kcet.jpg", "kcet0.html", "2026-04-25", "Upcoming", "2026-03-31"],
+  ["TS EAMCET", "both", "ts-eamcet.jpg", "tseamcet.html", "2026-05-02", "Upcoming", "2026-04-10"],
+  ["COMEDK", "both", "comedk.jpg", "comedk.html", "2026-05-15", "Upcoming", "2026-04-20"],
+  ["AP-EAMCET", "both", "apeamcet.jpg", "apeapcet.html", "2026-04-30", "Upcoming", "2026-04-05"],
+  ["MHTCET", "both", "mhtcet.jpg", "mhtcet.html", "2026-05-05", "Upcoming", "2026-04-15"],
+
+  // Medical
+  ["NEET UG", "medical", "jee-main.jpg", "neet.html", "2026-05-05", "Upcoming", "2026-04-10"],
+
+  // Others
+  ["CUET", "others", "jee-main.jpg", "cuet.html", "2026-04-01", "Upcoming", "2026-03-10"],
+  ["IAT (IISER)", "others", "iat.png", "iat.html", "2026-04-20", "Upcoming", "2026-03-25"],
+  ["NEST", "others", "nest.jpg", "nest.html", "2026-06-05", "Upcoming", "2026-05-10"],
+  ["NDA", "others", "nda", "nda.html", "2026-04-14", "Upcoming", "2026-03-20"],
+  ["UCEED", "others", "uceed.png", "uceed.html", "2026-01-20", "Upcoming", "2025-12-31"],
+  ["NATA", "others", "nata.jpg", "nata.html", "2026-02-15", "Upcoming", "2026-01-25"]
+];
+
+const STORAGE_KEY = "myExamSelections";
+const CHECKLIST_KEY = "examChecklists";
+
+// Load from localStorage (if present) so selections/checklists persist.[web:4][web:9]
+let myExams = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+let checklistState = JSON.parse(localStorage.getItem(CHECKLIST_KEY) || "{}");
+
+const allGrid = document.getElementById("allGrid");
+const myGrid = document.getElementById("myGrid");
+const categorySelect = document.getElementById("category");
+const searchInput = document.getElementById("search");
+const btnAll = document.getElementById("btnAll");
+const btnMy = document.getElementById("btnMy");
+const allSection = document.getElementById("allSection");
+const mySection = document.getElementById("mySection");
+const sectionTitle = document.getElementById("sectionTitle");
+
+function daysBetween(dateStr) {
+  const today = new Date();
+  const target = new Date(dateStr + "T00:00:00");
+  const diff = target - today;
+  return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
+}
+
+function getStatusClass(status) {
+  const s = status.toLowerCase();
+  if (s === "open") return "open";
+  if (s === "closed") return "closed";
+  return "upcoming";
+}
+
+function formatCategory(key, rawCategory) {
+  // Keep your visible category text similar to the second snippet.
+  if (key === "engineering") return "Engineering";
+  if (key === "medical") return "Medical";
+  if (key === "both") return rawCategory || "Engineering / Medical";
+  if (key === "others") return rawCategory || "Others";
+  return rawCategory || "Others";
+}
+
+// All Exams cards (no checklist, no progress circle)
+function renderAllCards(targetGrid, list) {
+  targetGrid.innerHTML = "";
+  list.forEach((exam, index) => {
+    const [name, catKey, img, link, examDate, regStatus, regCloseDate] = exam;
+    const d = daysBetween(examDate);
+    const regDays = daysBetween(regCloseDate);
+    const stored = myExams.includes(name);
+    const statusClass = getStatusClass(regStatus);
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.animationDelay = (index * 0.03) + "s";
+    card.dataset.category = catKey;
+    card.dataset.name = name.toLowerCase();
+
+    card.innerHTML = `
+      <img src="${img}" class="logo" alt="${name}">
+      <div class="exam-name">${name}</div>
+      <div class="category">${formatCategory(catKey)}</div>
+      <div class="status-row">
+        <span class="badge ${statusClass}">${regStatus}</span>
+        <span class="countdown">${d} days to exam</span>
+      </div>
+      <div class="status-row">
+        <span class="countdown">Registration closes in ${regDays} days</span>
+      </div>
+      <div class="button-row">
+        <a href="${link}" class="button-link">View Details</a>
+        <button class="button-add ${stored ? "added" : ""}">
+          ${stored ? "Added ✓" : "Add to My Exams"}
+        </button>
+      </div>
+    `;
+
+    const addBtn = card.querySelector(".button-add");
+    addBtn.addEventListener("click", () => toggleMyExam(name, addBtn));
+
+    targetGrid.appendChild(card);
+  });
+}
+
+// Checklist model
+const defaultSteps = [
+  "Create account / sign up",
+  "Fill application form",
+  "Upload photo & signature",
+  "Upload documents (category / PwD, etc.)",
+  "Pay application fee",
+  "Download confirmation page"
+];
+
+function getChecklistForExam(name) {
+  if (!checklistState[name]) {
+    checklistState[name] = defaultSteps.map(() => false);
+  }
+  return checklistState[name];
+}
+
+function saveChecklist() {
+  localStorage.setItem(CHECKLIST_KEY, JSON.stringify(checklistState));
+}
+
+function calcProgressPercent(flags) {
+  const total = flags.length;
+  const done = flags.filter(Boolean).length;
+  return total === 0 ? 0 : Math.round((done / total) * 100);
+}
+
+function setCircleProgress(circleEl, percent) {
+  const degrees = Math.round((percent / 100) * 360);
+  circleEl.style.background = `conic-gradient(#22c55e ${degrees}deg, #e5e7eb 0deg)`;
+}
+
+// My Exams cards (with circular progress + checklist)
+function renderMyCards(targetGrid, list) {
+  targetGrid.innerHTML = "";
+  list.forEach((exam, index) => {
+    const [name, catKey, img, link, examDate, regStatus, regCloseDate] = exam;
+    const d = daysBetween(examDate);
+    const regDays = daysBetween(regCloseDate);
+    const statusClass = getStatusClass(regStatus);
+    const flags = getChecklistForExam(name);
+    const percent = calcProgressPercent(flags);
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.animationDelay = (index * 0.03) + "s";
+    card.dataset.category = catKey;
+    card.dataset.name = name.toLowerCase();
+
+    const checklistHtml = defaultSteps.map((step, i) => {
+      const checked = flags[i] ? "checked" : "";
+      return `
+        <label class="checklist-item">
+          <input type="checkbox" data-step="${i}" ${checked}>
+          <span>${step}</span>
+        </label>
+      `;
+    }).join("");
+
+    card.innerHTML = `
+      <img src="${img}" class="logo" alt="${name}">
+      <div class="exam-name">${name}</div>
+      <div class="category">${formatCategory(catKey)}</div>
+      <div class="status-row">
+        <span class="badge ${statusClass}">${regStatus}</span>
+        <span class="countdown">${d} days to exam</span>
+      </div>
+      <div class="status-row">
+        <span class="countdown">Registration closes in ${regDays} days</span>
+      </div>
+      <div class="my-exam-body">
+        <div class="progress-wrapper">
+          <div class="progress-ring">
+            <div class="progress-inner">${percent}%</div>
+          </div>
+          <div class="progress-label">Registration progress</div>
+        </div>
+        <div class="checklist">
+          <div class="checklist-title">My Registration Steps</div>
+          ${checklistHtml}
+        </div>
+      </div>
+      <div class="button-row">
+        <a href="${link}" class="button-link">View Details</a>
+        <button class="button-add added">Added ✓</button>
+      </div>
+    `;
+
+    const circle = card.querySelector(".progress-ring");
+    const inner = card.querySelector(".progress-inner");
+    setCircleProgress(circle, percent);
+    inner.textContent = percent + "%";
+
+    card.querySelectorAll(".checklist-item input").forEach(input => {
+      input.addEventListener("change", () => {
+        const stepIndex = parseInt(input.dataset.step, 10);
+        const currentFlags = getChecklistForExam(name);
+        currentFlags[stepIndex] = input.checked;
+        checklistState[name] = currentFlags;
+        saveChecklist();
+        const newPercent = calcProgressPercent(currentFlags);
+        setCircleProgress(circle, newPercent);
+        inner.textContent = newPercent + "%";
       });
-    }
-  </script>
+    });
 
+    targetGrid.appendChild(card);
+  });
+}
+
+function toggleMyExam(name, btn) {
+  if (myExams.includes(name)) {
+    myExams = myExams.filter(n => n !== name);
+    btn.classList.remove("added");
+    btn.textContent = "Add to My Exams";
+  } else {
+    myExams.push(name);
+    btn.classList.add("added");
+    btn.textContent = "Added ✓";
+  }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(myExams));
+  renderMySection();
+}
+
+function applyFilters() {
+  const cat = categorySelect.value;
+  const searchValue = searchInput.value.toLowerCase();
+
+  document.querySelectorAll("#allGrid .card").forEach(card => {
+    const cardCat = card.dataset.category; // engineering / medical / both / others
+    const cardName = card.dataset.name;
+    const matchesSearch = cardName.includes(searchValue);
+
+    let matchesCat = false;
+    if (cat === "all") {
+      matchesCat = true;
+    } else if (cat === "both") {
+      matchesCat = cardCat === "both";
+    } else if (cat === "others") {
+      matchesCat = cardCat === "others";
+    } else {
+      matchesCat = cardCat === cat;
+    }
+
+    card.style.display = (matchesSearch && matchesCat) ? "flex" : "none";
+  });
+}
+
+function renderAllSection() {
+  renderAllCards(allGrid, exams);
+  applyFilters();
+}
+
+function renderMySection() {
+  const filtered = exams.filter(e => myExams.includes(e[0]));
+  renderMyCards(myGrid, filtered);
+}
+
+// Switch All / My
+btnAll.addEventListener("click", () => {
+  btnAll.classList.add("active");
+  btnMy.classList.remove("active");
+  allSection.classList.add("active");
+  mySection.classList.remove("active");
+  sectionTitle.textContent = "All Exams";
+});
+btnMy.addEventListener("click", () => {
+  btnMy.classList.add("active");
+  btnAll.classList.remove("active");
+  allSection.classList.remove("active");
+  mySection.classList.add("active");
+  sectionTitle.textContent = "My Exams";
+  renderMySection();
+});
+
+categorySelect.addEventListener("change", applyFilters);
+searchInput.addEventListener("input", applyFilters);
+
+// Initial render
+renderAllSection();
+renderMySection();
+</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
