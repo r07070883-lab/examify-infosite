@@ -8,20 +8,13 @@
 <style>
 :root{
   --green:#22c55e;
-  --dark-green:#14532d;
 }
 
-/* ===== BODY WITH BACKGROUND IMAGE ===== */
+/* ===== BODY ===== */
 body{
   margin:0;
   font-family:"Segoe UI",Roboto,Arial,sans-serif;
-
-  background-image: url("cuet1.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-
+  background:url("cuet1.jpg") center/cover fixed no-repeat;
   color:#0f172a;
   overflow-x:hidden;
 }
@@ -34,7 +27,7 @@ body{
   pointer-events:none;
   animation:floatIcon 18s linear infinite;
 }
-.med-icons span:nth-child(1){left:8%;animation-delay:0s;}
+.med-icons span:nth-child(1){left:8%;}
 .med-icons span:nth-child(2){left:22%;animation-delay:4s;}
 .med-icons span:nth-child(3){left:38%;animation-delay:8s;}
 .med-icons span:nth-child(4){left:55%;animation-delay:2s;}
@@ -43,16 +36,13 @@ body{
 
 @keyframes floatIcon{
   0%{bottom:-10%;opacity:0;}
-  10%{opacity:0.3;}
+  10%{opacity:.3;}
   50%{transform:translateX(15px) rotate(180deg);}
   100%{bottom:110%;opacity:0;transform:translateX(-15px) rotate(360deg);}
 }
 
 /* ===== LOGO ===== */
-.logo-top{
-  text-align:center;
-  padding:18px 0;
-}
+.logo-top{text-align:center;padding:18px 0;}
 .logo-top img{
   height:75px;
   background:white;
@@ -61,20 +51,9 @@ body{
 }
 
 /* ===== HEADER ===== */
-.header{
-  text-align:center;
-  padding:55px 20px 75px;
-}
-.header h1{
-  font-size:38px;
-  margin:0;
-  color:#064e3b;
-}
-.header p{
-  margin-top:10px;
-  font-size:16px;
-  color:#065f46;
-}
+.header{text-align:center;padding:55px 20px 75px;}
+.header h1{font-size:38px;margin:0;color:#064e3b;}
+.header p{margin-top:10px;font-size:16px;color:#065f46;}
 
 /* ===== MAIN ===== */
 .main{
@@ -83,14 +62,31 @@ body{
   padding:0 16px;
 }
 
+/* ===== CARD BASE ===== */
 .card{
-  background:rgba(255,255,255,0.85);
   border-radius:20px;
   padding:28px;
   margin-bottom:26px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.2);
 }
 
+/* ===== GLASS CARD ===== */
+.glass-card{
+  background:rgba(255,255,255,.25);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.35);
+  box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+/* ===== WHITE CARD ===== */
+.link-card{
+  background:#fff;
+  border-radius:18px;
+  padding:22px;
+  box-shadow:0 12px 30px rgba(0,0,0,.2);
+}
+
+/* ===== TITLES ===== */
 .section-title{
   display:flex;
   align-items:center;
@@ -99,76 +95,38 @@ body{
   color:#065f46;
   margin-bottom:14px;
 }
-
 .section-title .icon{
-  width:42px;
-  height:42px;
-  border-radius:12px;
+  width:42px;height:42px;border-radius:12px;
   background:linear-gradient(135deg,#22c55e,#86efac);
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  color:#fff;
+  display:flex;align-items:center;justify-content:center;
   margin-right:12px;
 }
 
-.content{
-  color:#134e4a;
-  line-height:1.75;
-  font-size:15.6px;
-}
-
+/* ===== CONTENT ===== */
+.content{color:#134e4a;line-height:1.75;font-size:15.6px;}
 ul{padding-left:20px;}
 ul li{margin-bottom:8px;}
 
 /* ===== BUTTONS ===== */
-.btn{
-  display:inline-block;
-  margin-top:18px;
-  margin-right:10px;
-  padding:14px 36px;
-  background:linear-gradient(135deg,#22c55e,#86efac);
-  color:white;
-  text-decoration:none;
-  border-radius:40px;
-  font-weight:700;
-}
-.btn:hover{transform:scale(1.06);}
-
-/* ===== LINK CARDS ===== */
-.link-card{
-  background:white;
-  color:#0f172a;
-  border-radius:18px;
-  padding:22px;
-  box-shadow:0 12px 30px rgba(0,0,0,0.2);
-}
-.link-card p{color:#475569;font-size:14.5px;}
-.link-card .button{
+.btn,.button{
   display:inline-block;
   margin-top:12px;
-  padding:10px 22px;
+  padding:12px 26px;
   background:linear-gradient(135deg,#22c55e,#86efac);
-  color:white;
+  color:#fff;
   text-decoration:none;
-  border-radius:22px;
+  border-radius:30px;
   font-weight:700;
 }
 
 /* ===== FOOTER ===== */
-.footer{
-  display:flex;
-  justify-content:center;
-  margin:40px 0 50px;
-}
+.footer{display:flex;justify-content:center;margin:40px 0 50px;}
 .back-home{
   padding:14px 42px;
   background:linear-gradient(135deg,#22c55e,#86efac);
-  color:white;
-  text-decoration:none;
-  border-radius:30px;
-  font-size:18px;
-  font-weight:700;
+  color:white;text-decoration:none;border-radius:30px;
+  font-size:18px;font-weight:700;
 }
 </style>
 </head>
@@ -177,12 +135,8 @@ ul li{margin-bottom:8px;}
 
 <!-- FLOATING ICONS -->
 <div class="med-icons">
-  <span>📘</span>
-  <span>🎓</span>
-  <span>📝</span>
-  <span>🏫</span>
-  <span>📊</span>
-  <span>📚</span>
+  <span>📘</span><span>🎓</span><span>📝</span>
+  <span>🏫</span><span>📊</span><span>📚</span>
 </div>
 
 <div class="logo-top">
@@ -196,110 +150,108 @@ ul li{margin-bottom:8px;}
 
 <div class="main">
 
-<div class="card">
+<!-- ===== GLASS CARDS ===== -->
+
+<div class="card glass-card">
   <div class="section-title"><div class="icon">🎯</div>Purpose</div>
   <div class="content">
-    CUET (UG) is conducted by NTA for admission to undergraduate programmes
-    in Central, State, Deemed, and Private Universities across India.
+    CUET (UG) is conducted by NTA for admission to undergraduate programmes in
+    Central, State, Deemed, and Private Universities across India.
   </div>
 </div>
 
-<div class="card">
+<div class="card glass-card">
   <div class="section-title"><div class="icon">📅</div>Important Dates</div>
-  <div class="content">
-    <ul>
-      <li>Registration Start: February 2026</li>
-      <li>Last Date to Apply: March 2026</li>
-      <li>Admit Card: May 2026</li>
-      <li>Exam Dates: May – June 2026</li>
-      <li>Result: July 2026</li>
-    </ul>
-  </div>
+  <ul class="content">
+    <li>Registration Start: February 2026</li>
+    <li>Last Date to Apply: March 2026</li>
+    <li>Admit Card: May 2026</li>
+    <li>Exam Dates: May – June 2026</li>
+    <li>Result: July 2026</li>
+  </ul>
 </div>
 
-<div class="card">
+<div class="card glass-card">
   <div class="section-title"><div class="icon">🎓</div>Eligibility Criteria</div>
-  <div class="content">
-    <ul>
-      <li>Passed Class 12 or appearing</li>
-      <li>Recognized education board</li>
-      <li>No age limit (subject to university rules)</li>
-      <li>Indian & foreign nationals eligible</li>
-    </ul>
-  </div>
+  <ul class="content">
+    <li>Passed Class 12 or appearing</li>
+    <li>Recognized education board</li>
+    <li>No age limit (subject to university rules)</li>
+    <li>Indian & foreign nationals eligible</li>
+  </ul>
 </div>
 
-<div class="card">
+<div class="card glass-card">
   <div class="section-title"><div class="icon">📝</div>Exam Pattern</div>
-  <div class="content">
-    <ul>
-      <li>Mode: Computer Based Test (CBT)</li>
-      <li>Language Test, Domain Subjects & General Test</li>
-      <li>Multiple choice questions</li>
-      <li>Negative marking applicable</li>
-    </ul>
-  </div>
+  <ul class="content">
+    <li>Computer Based Test (CBT)</li>
+    <li>Language, Domain Subjects & General Test</li>
+    <li>MCQ format</li>
+    <li>Negative marking applicable</li>
+  </ul>
 </div>
 
-<div class="card">
+<div class="card glass-card">
   <div class="section-title"><div class="icon">📄</div>Documents Required</div>
-  <div class="content">
-    <ul>
-      <li>Passport-size photograph</li>
-      <li>Signature (scanned)</li>
-      <li>Class 10 mark sheet</li>
-      <li>Class 12 mark sheet</li>
-      <li>Valid photo ID</li>
-      <li>Category certificate (if applicable)</li>
-      <li>CUET Admit Card</li>
-    </ul>
-  </div>
+  <ul class="content">
+    <li>Passport-size photograph</li>
+    <li>Signature</li>
+    <li>Class 10 & 12 mark sheets</li>
+    <li>Valid photo ID</li>
+    <li>Category certificate (if applicable)</li>
+    <li>CUET Admit Card</li>
+  </ul>
 </div>
 
-<div class="card">
+<div class="card glass-card">
   <div class="section-title"><div class="icon">📝</div>Registration Guide</div>
   <div class="content">Step-by-step guide to apply for CUET UG.</div>
-  <a href="cuet.pdf" target="_blank" class="btn">📘 Registration Guide (PDF)</a>
-  <a href="https://cuet.nta.nic.in/" target="_blank" class="btn">🔗 Registration Link</a>
+  <a href="cuet.pdf" class="btn">📘 Registration Guide (PDF)</a>
+  <a href="https://cuet.nta.nic.in/" class="btn">🔗 Registration Link</a>
 </div>
 
+<!-- ===== WHITE CARDS ===== -->
+
 <h2>🔗 Important Links</h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:15px;">
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;">
+
   <div class="link-card">
     <h4>📘 Information Bulletin</h4>
-     <p>Rules used when two or more candidates obtain the same percentile.</p>
+    <p>Rules and guidelines for CUET.</p>
     <a class="button" href="https://cuet.nta.nic.in/registration-for-cuetug-2026-is-live/" target="_blank">View</a>
   </div>
+
   <div class="link-card">
     <h4>📜 CUET Syllabus</h4>
-    <p>Official JEE Main Syallabus.</p>
+    <p>Official CUET syllabus.</p>
     <a class="button" href="https://cuet.nta.nic.in/syllabus/" target="_blank">Download</a>
   </div>
-   <div class="link-card">
-      <h4>💰 Course Fees</h4>
-      <p>Fee structure for CUET.</p>
-      <a class="button" href="https://cdnbbsr.s3waas.gov.in/s3d1a21da7bca4abff8b0b61b87597de73/uploads/2026/01/202601031633478370.pdf" target="_blank">View Fee Details</a>
-    </div>
-   <div class="link-card">
-      <h4>📘 Tie-Breaking Rules</h4>
-      <p>Rules used when two or more candidates obtain the same percentile.</p>
-      <a class="button" href="https://cdnbbsr.s3waas.gov.in/s32d969e2cee8cfa07ce7ca0bb13c7a36d/uploads/2025/08/2025080753.pdf" target="_blank">View PDF</a>
-    </div>
+
+  <div class="link-card">
+    <h4>💰 Course Fees</h4>
+    <p>Fee structure for CUET courses.</p>
+    <a class="button" href="https://cdnbbsr.s3waas.gov.in/s3d1a21da7bca4abff8b0b61b87597de73/uploads/2026/01/202601031633478370.pdf" target="_blank">View Fee Details</a>
+  </div>
+
+  <div class="link-card">
+    <h4>📘 Tie-Breaking Rules</h4>
+    <p>Rules for equal percentile scores.</p>
+    <a class="button" href="https://cdnbbsr.s3waas.gov.in/s32d969e2cee8cfa07ce7ca0bb13c7a36d/uploads/2025/08/2025080753.pdf" target="_blank">View PDF</a>
+  </div>
 
   <div class="link-card">
     <h4>🏫 Participating Universities</h4>
-    <p>Universities available through cuet </p>
+    <p>Universities available through CUET.</p>
     <a class="button" href="https://cuet.nta.nic.in/universities/participating-central-universities/" target="_blank">Details</a>
   </div>
+
 </div>
 
 <footer class="footer">
   <a href="index.html" class="back-home">⬅ Back to Home</a>
 </footer>
 
+</div>
 </body>
 </html>
-
-
-
-
