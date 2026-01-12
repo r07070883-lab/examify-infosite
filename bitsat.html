@@ -10,22 +10,19 @@
   --blue:#2563eb;
   --cyan:#22d3ee;
   --orange:#fb923c;
-  --bg:#f8fafc;
 }
 
+/* ===== BODY (NO OVERLAY) ===== */
 body{
   margin:0;
   font-family:"Segoe UI", Roboto, Arial, sans-serif;
-  background:
-    linear-gradient(rgba(255,255,255,0.65),rgba(255,255,255,0.65)),
-    url("bitsatbg.jpg");
+  background:url("bitsatbg.jpg") no-repeat center center fixed;
   background-size:cover;
-  background-attachment:fixed;
   color:#0f172a;
   overflow-x:hidden;
 }
 
-/* ===== FLOATING ORBS ===== */
+/* ===== FLOATING PARTICLES ===== */
 .particles span{
   position:fixed;
   width:10px;
@@ -35,27 +32,35 @@ body{
   opacity:0.35;
   animation:float 20s linear infinite;
 }
-.particles span:nth-child(even){background:var(--orange);}
+.particles span:nth-child(even){
+  background:var(--orange);
+}
 @keyframes float{
   from{bottom:-20px;transform:translateX(0);}
   to{bottom:110%;transform:translateX(160px);}
 }
 
-/* ===== HEADER ===== */
-.logo-top{text-align:center;padding:22px 0;}
+/* ===== LOGO ===== */
+.logo-top{
+  text-align:center;
+  padding:22px 0;
+}
 .logo-top img{
   height:80px;
   background:white;
   padding:12px 20px;
   border-radius:18px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
 }
 
+/* ===== HEADER ===== */
 .header{
   text-align:center;
-  padding:65px 20px 90px;
+  padding:60px 20px 90px;
 }
 .header h1{
   font-size:44px;
+  margin:0;
   background:linear-gradient(90deg,var(--blue),var(--orange));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -63,27 +68,30 @@ body{
 .header p{
   margin-top:12px;
   font-size:16px;
-  color:#334155;
+  color:#1e293b;
 }
 
 /* ===== MAIN ===== */
 .main{
-  max-width:940px;
+  max-width:960px;
   margin:-60px auto 60px;
   padding:0 16px;
 }
 
+/* ===== CARD ===== */
 .card{
-  background:rgba(255,255,255,0.7);
-  backdrop-filter:blur(14px);
+  background:rgba(255,255,255,0.9);
   border-radius:22px;
   padding:30px;
   margin-bottom:28px;
-  box-shadow:0 18px 40px rgba(0,0,0,0.12);
+  box-shadow:0 18px 40px rgba(0,0,0,0.15);
   transition:transform 0.3s ease;
 }
-.card:hover{transform:translateY(-6px);}
+.card:hover{
+  transform:translateY(-6px);
+}
 
+/* ===== SECTION TITLE ===== */
 .section-title{
   display:flex;
   align-items:center;
@@ -104,14 +112,20 @@ body{
   margin-right:14px;
 }
 
+/* ===== CONTENT ===== */
 .content{
   line-height:1.75;
   font-size:15.6px;
   color:#1e293b;
 }
-ul{padding-left:20px;}
-ul li{margin-bottom:8px;}
+ul{
+  padding-left:20px;
+}
+ul li{
+  margin-bottom:8px;
+}
 
+/* ===== BUTTON ===== */
 .btn{
   display:inline-block;
   margin-top:18px;
@@ -130,18 +144,30 @@ ul li{margin-bottom:8px;}
   box-shadow:0 14px 35px rgba(37,99,235,0.45);
 }
 
-/* ===== LINKS ===== */
+/* ===== IMPORTANT LINKS ===== */
+.links-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+  margin-top:18px;
+}
 .link-card{
   background:white;
-  color:#0f172a;
   border-radius:20px;
   padding:22px;
   box-shadow:0 14px 35px rgba(0,0,0,0.18);
   transition:transform 0.25s ease;
 }
-.link-card:hover{transform:translateY(-6px);}
-.link-card h4{margin-top:0;}
-.link-card p{font-size:14.5px;color:#475569;}
+.link-card:hover{
+  transform:translateY(-6px);
+}
+.link-card h4{
+  margin-top:0;
+}
+.link-card p{
+  font-size:14.5px;
+  color:#475569;
+}
 .link-card .button{
   display:inline-block;
   margin-top:12px;
@@ -153,10 +179,11 @@ ul li{margin-bottom:8px;}
   font-weight:600;
 }
 
+/* ===== FOOTER ===== */
 .footer{
   display:flex;
   justify-content:center;
-  margin:40px 0 55px;
+  margin:45px 0 55px;
 }
 .back-home{
   padding:14px 46px;
@@ -172,128 +199,125 @@ ul li{margin-bottom:8px;}
 
 <body>
 
+<!-- Floating Particles -->
 <div class="particles">
   <span></span><span></span><span></span>
   <span></span><span></span><span></span>
 </div>
 
+<!-- Logo -->
 <div class="logo-top">
   <img src="bitsat-logo.jpg" alt="BITSAT Logo">
 </div>
 
+<!-- Header -->
 <div class="header">
   <h1>BITSAT 2026</h1>
   <p>Birla Institute of Technology & Science Admission Test</p>
 </div>
 
+<!-- Main Content -->
 <div class="main">
 
-<div class="card">
-  <div class="section-title"><div class="icon">🎯</div>Purpose</div>
-  <div class="content">
-    BITSAT is conducted by BITS Pilani for admission into its
-    integrated first-degree programs at Pilani, Goa, and Hyderabad campuses.
-  </div>
-</div>
-
-<div class="card">
-  <div class="section-title"><div class="icon">📅</div>Important Dates</div>
-  <div class="content">
-    <ul>
-      <li>Registration Start: January 2026</li>
-      <li>Session 1 Exam: May 2026</li>
-      <li>Session 2 Exam: June 2026</li>
-      <li>Score Card: Immediately after exam</li>
-      <li>Counselling: June–July 2026</li>
-    </ul>
-  </div>
-</div>
-
-<div class="card">
-  <div class="section-title"><div class="icon">🎓</div>Eligibility Criteria</div>
-  <div class="content">
-    <ul>
-      <li>Class 12 with Physics, Chemistry & Mathematics</li>
-      <li>Minimum 75% aggregate in PCM</li>
-      <li>At least 60% in each subject</li>
-      <li>Appearing candidates eligible</li>
-    </ul>
-  </div>
-</div>
-
-<div class="card">
-  <div class="section-title"><div class="icon">📝</div>Exam Pattern</div>
-  <div class="content">
-    <ul>
-      <li>Physics – 30 Questions</li>
-      <li>Chemistry – 30 Questions</li>
-      <li>Mathematics – 40 Questions</li>
-      <li>English Proficiency & Logical Reasoning – 30 Questions</li>
-      <li>Total: 130 Questions | 390 Marks</li>
-    </ul>
-  </div>
-</div>
-
-<div class="card">
-  <div class="section-title"><div class="icon">📄</div>Documents Required</div>
-  <div class="content">
-    <ul>
-      <li>Photograph & signature</li>
-      <li>Class 10 & 12 marksheets</li>
-      <li>Government photo ID</li>
-    </ul>
-  </div>
-</div>
-
-<div class="card">
-  <div class="section-title"><div class="icon">📝</div>Registration Guide</div>
-  <div class="content">Step-by-step guide to apply for BITSAT.</div>
-  <a href="https://drive.google.com/file/d/1BRHg2HZ4AwQQrCvAqSwDoTAlDVyTjTRo/view?usp=sharing" class="btn">📝 Registration Guide (PDF)</a>
-  <a href="https://www.bitsadmission.com" target="_blank" class="btn">🔗 Official Registration</a>
-</div>
-
-<div class="card">
-  <div class="section-title"><div class="icon">📚</div>Syllabus</div>
-  <div class="content">
-    NCERT-based Physics, Chemistry, Mathematics, English & Logical Reasoning.
-  </div>
-  <a href="https://www.bitsadmission.com" target="_blank" class="btn">Official Syllabus</a>
-</div>
-
-<div class="card">
-  <div class="section-title"><div class="icon">💳</div>Payment Methods</div>
-  <div class="content">
-    <ul>
-      <li>Debit / Credit Cards</li>
-      <li>Net Banking</li>
-      <li>UPI</li>
-    </ul>
-    <strong>Note:</strong> Application fee is non-refundable.
-  </div>
-</div>
-
-<h2>🔗 Important Links</h2>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:15px;">
-
-  <div class="link-card">
-    <h4>📘 Information Bulletin</h4>
-    <p>Official BITSAT brochure.</p>
-    <a class="button" href="https://admissions.bits-pilani.ac.in/FD/FD_brochure.html?06012025&_gl=1*1s90cy3*_gcl_au*MTU2NjE1MzA3OS4xNzY2NTUxMTYz*_ga*MjE0NzY3MjY4LjE3NjY1NTExNjQ.*_ga_DYQ0HEBE5Z*czE3NjY1NTExNjMkbzEkZzEkdDE3NjY1NTExNjMkajYwJGwwJGgxNjQzNzM1OTEy" target="_blank">View PDF</a>
+  <div class="card">
+    <div class="section-title"><div class="icon">🎯</div>Purpose</div>
+    <div class="content">
+      BITSAT is conducted by BITS Pilani for admission into integrated
+      first-degree programs at Pilani, Goa, and Hyderabad campuses.
+    </div>
   </div>
 
-  <div class="link-card">
-    <h4>📜 Syllabus PDF</h4>
-    <p>Detailed exam syllabus.</p>
-    <a class="button" href="https://drive.google.com/file/d/1QeKGOHqWqEljNcUGE7ulPwvK2iFhbR-H/view?usp=sharing" target="_blank">View PDF</a>
+  <div class="card">
+    <div class="section-title"><div class="icon">📅</div>Important Dates</div>
+    <div class="content">
+      <ul>
+        <li>Registration Start: January 2026</li>
+        <li>Session 1 Exam: May 2026</li>
+        <li>Session 2 Exam: June 2026</li>
+        <li>Score Card: Immediately after exam</li>
+        <li>Counselling: June – July 2026</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="link-card">
-    <h4>⚖️ Tie-Breaking Rules</h4>
-    <p>Rules applied when candidates score equal marks.</p>
-    <a class="button" href="https://drive.google.com/file/d/1OJuQAZR_UNfHg2psmlx-gNJ_Wda52A-_/view?usp=sharing" target="_blank">View PDF</a>
+  <div class="card">
+    <div class="section-title"><div class="icon">🎓</div>Eligibility Criteria</div>
+    <div class="content">
+      <ul>
+        <li>Class 12 with Physics, Chemistry & Mathematics</li>
+        <li>Minimum 75% aggregate in PCM</li>
+        <li>Minimum 60% in each subject</li>
+        <li>Appearing candidates eligible</li>
+      </ul>
+    </div>
   </div>
 
-</div>
+  <div class="card">
+    <div class="section-title"><div class="icon">📝</div>Exam Pattern</div>
+    <div class="content">
+      <ul>
+        <li>Physics – 30 Questions</li>
+        <li>Chemistry – 30 Questions</li>
+        <li>Mathematics – 40 Questions</li>
+        <li>English Proficiency & Logical Reasoning – 30 Questions</li>
+        <li>Total: 130 Questions | 390 Marks</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title"><div class="icon">📄</div>Documents Required</div>
+    <div class="content">
+      <ul>
+        <li>Photograph & Signature</li>
+        <li>Class 10 & 12 Mark Sheets</li>
+        <li>Government Photo ID</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title"><div class="icon">💳</div>Payment Methods</div>
+    <div class="content">
+      <ul>
+        <li>Debit / Credit Card</li>
+        <li>Net Banking</li>
+        <li>UPI</li>
+      </ul>
+      <strong>Note:</strong> Application fee is non-refundable.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title"><div class="icon">📝</div>Registration Guide</div>
+    <div class="content">Step-by-step guide to apply for BITSAT.</div>
+    <a href="https://drive.google.com/file/d/1BRHg2HZ4AwQQrCvAqSwDoTAlDVyTjTRo/view" class="btn">📘 Registration Guide (PDF)</a>
+    <a href="https://www.bitsadmission.com" target="_blank" class="btn">🔗 Official Registration</a>
+  </div>
+
+  <h2>🔗 Important Links</h2>
+
+  <div class="links-grid">
+
+    <div class="link-card">
+      <h4>📘 Information Bulletin</h4>
+      <p>Official BITSAT brochure.</p>
+      <a class="button" href="https://admissions.bits-pilani.ac.in" target="_blank">View PDF</a>
+    </div>
+
+    <div class="link-card">
+      <h4>📜 Syllabus PDF</h4>
+      <p>Detailed exam syllabus.</p>
+      <a class="button" href="https://www.bitsadmission.com" target="_blank">View PDF</a>
+    </div>
+
+    <div class="link-card">
+      <h4>⚖️ Tie-Breaking Rules</h4>
+      <p>Rules for equal scores.</p>
+      <a class="button" href="https://www.bitsadmission.com" target="_blank">View PDF</a>
+    </div>
+
+  </div>
 
 </div>
 
@@ -303,7 +327,4 @@ ul li{margin-bottom:8px;}
 
 </body>
 </html>
-
-
-
 
