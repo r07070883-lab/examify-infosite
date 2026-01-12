@@ -795,3 +795,1000 @@ setInterval(updateCountdowns, 1000);
 </body>
 </html>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Exam Explorer</title>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+body {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #0f172a, #020617 50%, #020617 100%);
+  color: #0f172a;
+}
+.progress-message {
+  margin-top: 4px;
+  font-size: 0.75rem;
+  color: #16a34a;
+  text-align: center;
+}
+header {
+  background: linear-gradient(90deg, #1d4ed8, #2563eb, #1d4ed8);
+  color: #f9fafb;
+  text-align: center;
+  padding: 18px 0;
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.8);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.quote {
+  text-align: center;
+  font-style: italic;
+  font-weight: 600;
+  color: #bfdbfe;
+  margin: 10px 0 18px;
+  font-size: 1.05rem;
+}
+.top-bar {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 10px 16px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+label {
+  font-weight: 600;
+  color: #e5e7eb;
+  font-size: 0.9rem;
+}
+select,
+input[type="text"] {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  border: 1px solid #1d4ed8;
+  background: rgba(15, 23, 42, 0.95);
+  color: #e5e7eb;
+  outline: none;
+  transition: 0.25s ease;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.35);
+  min-width: 160px;
+}
+select:focus,
+input[type="text"]:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.75);
+  background: rgba(15, 23, 42, 1);
+}
+.view-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.pill-btn {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: rgba(248, 250, 252, 0.9);
+  color: #0f172a;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+.pill-btn.active,
+.pill-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border-color: transparent;
+  color: #f9fafb;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.7);
+}
+h1 {
+  text-align: center;
+  color: #e5e7eb;
+  font-size: 1.7rem;
+  margin: 14px 0 18px;
+}
+.section {
+  display: none;
+}
+.section.active {
+  display: block;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0 24px 40px;
+  max-width: 1300px;
+  margin: 0 auto 40px;
+}
+/* Light gradient cards */
+.card {
+  background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
+  border-radius: 20px;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.3);
+  padding: 18px 16px 16px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transform: translateY(10px);
+  opacity: 0;
+  animation: cardIn 0.45s ease forwards;
+}
+.card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.4);
+  border-color: rgba(59, 130, 246, 0.9);
+}
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 6px;
+  box-shadow: 0 0 16px rgba(148, 163, 184, 0.8);
+  margin-bottom: 4px;
+}
+.exam-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #111827;
+  text-align: center;
+}
+.category {
+  font-size: 0.85rem;
+  color: #4b5563;
+  text-align: center;
+}
+.status-row {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  align-items: center;
+  font-size: 0.8rem;
+}
+.badge {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border: 1px solid transparent;
+}
+.badge.upcoming {
+  background: rgba(59, 130, 246, 0.16);
+  border-color: rgba(59, 130, 246, 0.7);
+  color: #1d4ed8;
+}
+.badge.open {
+  background: rgba(34, 197, 94, 0.16);
+  border-color: rgba(34, 197, 94, 0.8);
+  color: #15803d;
+}
+.badge.closed {
+  background: rgba(239, 68, 68, 0.16);
+  border-color: rgba(239, 68, 68, 0.85);
+  color: #b91c1c;
+}
+.countdown {
+  font-size: 0.8rem;
+  color: #111827;
+  margin-top: 2px;
+}
+.button-row {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+}
+.button-link {
+  display: inline-block;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.6);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.button-link:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.9);
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+.button-add {
+  border: none;
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111827;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  transition: 0.18s ease;
+  width: 100%;
+  max-width: 170px;
+}
+.button-add:hover {
+  background: #e0f2fe;
+  border-color: #38bdf8;
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.45);
+}
+.button-add.added {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-color: transparent;
+  color: #ecfdf5;
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.85);
+}
+.button-add.added:hover {
+  transform: translateY(-1px);
+}
+/* My Exams: circular progress + checklist */
+.my-exam-body {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.progress-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.progress-ring {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: conic-gradient(#22c55e 0deg, #e5e7eb 0deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.7);
+}
+.progress-inner {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #111827;
+}
+.progress-label {
+  font-size: 0.7rem;
+  color: #4b5563;
+  text-align: center;
+}
+.checklist {
+  flex: 1;
+  min-width: 160px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  padding: 8px 10px;
+  box-shadow: 0 4px 12px rgba(148, 163, 184, 0.6);
+}
+.checklist-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 4px;
+}
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: #111827;
+  margin-bottom: 2px;
+}
+.checklist-item input {
+  cursor: pointer;
+}
+/* Account section */
+.account-section {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #e5e7eb;
+  font-size: 0.8rem;
+}
+.account-username {
+  font-weight: 600;
+}
+.account-link {
+  color: #38bdf8;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+@media (max-width: 700px) {
+  header {
+    font-size: 1.6rem;
+    padding: 14px 0;
+  }
+  h1 {
+    font-size: 1.45rem;
+  }
+  .grid {
+    padding: 0 16px 32px;
+  }
+  .top-bar {
+    padding: 10px 12px 0;
+    justify-content: center;
+  }
+}
+
+/* Chatbot container at bottom */
+#exam-chatbot {
+  max-width: 420px;
+  margin: 20px auto 40px;
+  border-radius: 16px;
+  background: #0f172a;
+  color: #e5e7eb;
+  padding: 16px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.55);
+}
+#exam-chatbot-messages {
+  background: radial-gradient(circle at top left, #1e293b, #020617);
+  border-radius: 12px;
+  padding: 10px;
+  height: 220px;
+  overflow-y: auto;
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+</style>
+</head>
+<body>
+<header>🎓 Examify</header>
+<div class="quote">"Patience = Success"</div>
+
+<div class="top-bar">
+  <div class="filter-bar">
+    <label for="category">Sort by Category:</label>
+    <select id="category">
+      <option value="all">All</option>
+      <option value="engineering">Engineering</option>
+      <option value="medical">Medical</option>
+      <option value="both">Both</option>
+      <option value="others">Others</option>
+    </select>
+    <input type="text" id="search" placeholder="Search exams..." />
+  </div>
+
+  <div style="display:flex; align-items:center; gap:12px;">
+    <div class="view-buttons">
+      <button class="pill-btn active" id="btnAll">All Exams</button>
+      <button class="pill-btn" id="btnMy">My Exams</button>
+    </div>
+    <div class="account-section" id="accountSection"></div>
+  </div>
+</div>
+
+<h1 id="sectionTitle">All Exams</h1>
+
+<div class="section active" id="allSection">
+  <div class="grid" id="allGrid"></div>
+</div>
+
+<div class="section" id="mySection">
+  <div class="grid" id="myGrid"></div>
+</div>
+
+<script>
+// ================= CORE EXAM EXPLORER CODE =================
+const exams = [
+  ["JEE Main", "engineering", "jee-main.jpg", "jee-main2.html", "2026-01-15", "Open",     "2025-12-20"],
+  ["JEE Advanced", "engineering", "jee-advanced.png", "jee-adv.html", "2026-05-26", "Upcoming", "2026-04-30"],
+  ["BITSAT", "engineering", "bitsat.png", "bitsat.html", "2026-05-10", "Upcoming", "2026-04-15"],
+  ["VITEEE", "engineering", "vitee.jpg", "viteee.html", "2026-04-20", "Upcoming", "2026-03-30"],
+  ["SRMJEEE", "engineering", "srmjeee.png", "srmjeee.html", "2026-04-10", "Upcoming", "2026-03-25"],
+  ["WBJEE", "engineering", "wbjee.jpg", "wbjee.html", "2026-03-15", "Upcoming", "2026-02-20"],
+  ["MET", "engineering", "met.jpg", "met1.html", "2026-04-05", "Upcoming", "2026-03-10"],
+  ["UGEE", "engineering", "ugee.jpg", "ugee.html", "2026-03-25", "Upcoming", "2026-03-01"],
+  ["KCET", "both", "kcet.jpg", "kcet0.html", "2026-04-25", "Upcoming", "2026-03-31"],
+  ["TS EAMCET", "both", "ts-eamcet.jpg", "tseamcet.html", "2026-05-02", "Upcoming", "2026-04-10"],
+  ["COMEDK", "both", "comedk.jpg", "comedk.html", "2026-05-15", "Upcoming", "2026-04-20"],
+  ["AP-EAMCET", "both", "apeamcet.jpg", "apeapcet.html", "2026-04-30", "Upcoming", "2026-04-05"],
+  ["MHTCET", "both", "mhtcet.jpg", "mhtcet.html", "2026-05-05", "Upcoming", "2026-04-15"],
+  ["NEET UG", "medical", "jee-main.jpg", "neet.html", "2026-05-05", "Upcoming", "2026-04-10"],
+  ["CUET", "others", "jee-main.jpg", "cuet.html", "2026-04-01", "Upcoming", "2026-03-10"],
+  ["IAT (IISER)", "others", "iat.png", "iat.html", "2026-04-20", "Upcoming", "2026-03-25"],
+  ["NEST", "others", "nest.jpg", "nest.html", "2026-06-05", "Upcoming", "2026-05-10"],
+  ["NDA", "others", "nda", "nda.html", "2026-04-14", "Upcoming", "2026-03-20"],
+  ["UCEED", "others", "uceed.png", "uceed.html", "2026-01-20", "Upcoming", "2025-12-31"],
+  ["NATA", "others", "nata.jpg", "nata.html", "2026-02-15", "Upcoming", "2026-01-25"]
+];
+
+const STORAGE_KEY_BASE = "myExamSelections_";
+const CHECKLIST_KEY_BASE = "examChecklists_";
+const CURRENT_USER_KEY = "examExplorerCurrentUser";
+
+const allGrid = document.getElementById("allGrid");
+const myGrid = document.getElementById("myGrid");
+const categorySelect = document.getElementById("category");
+const searchInput = document.getElementById("search");
+const btnAll = document.getElementById("btnAll");
+const btnMy = document.getElementById("btnMy");
+const allSection = document.getElementById("allSection");
+const mySection = document.getElementById("mySection");
+const sectionTitle = document.getElementById("sectionTitle");
+const accountSection = document.getElementById("accountSection");
+
+function getCurrentUser() {
+  return localStorage.getItem(CURRENT_USER_KEY) || null;
+}
+function requireLogin() {
+  alert("You must login to use 'My Exams'. You will be redirected to the login page.");
+  window.location.href = "login.html";
+}
+function getStorageKeysForUser(user) {
+  const suffix = user ? user : "guest";
+  return {
+    myExamsKey: STORAGE_KEY_BASE + suffix,
+    checklistKey: CHECKLIST_KEY_BASE + suffix
+  };
+}
+
+let currentUser = getCurrentUser();
+let keys = getStorageKeysForUser(currentUser);
+let myExams = JSON.parse(localStorage.getItem(keys.myExamsKey) || "[]");
+let checklistState = JSON.parse(localStorage.getItem(keys.checklistKey) || "{}");
+
+function renderAccountSection() {
+  currentUser = getCurrentUser();
+  if (!currentUser) {
+    accountSection.innerHTML =
+      '<span>Not logged in</span> | <span class="account-link" id="loginLink">Login</span>';
+    const loginLink = document.getElementById("loginLink");
+    if (loginLink) {
+      loginLink.addEventListener("click", () => {
+        window.location.href = "login.html";
+      });
+    }
+  } else {
+    accountSection.innerHTML =
+      '<span class="account-username">' +
+      currentUser +
+      '</span> | <span class="account-link" id="logoutLink">Logout</span>';
+    const logoutLink = document.getElementById("logoutLink");
+    if (logoutLink) {
+      logoutLink.addEventListener("click", () => {
+        localStorage.removeItem(CURRENT_USER_KEY);
+        location.reload();
+      });
+    }
+  }
+}
+
+function daysBetween(dateStr) {
+  const today = new Date();
+  const target = new Date(dateStr + "T00:00:00");
+  const diff = target - today;
+  return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
+}
+function getStatusClass(status) {
+  const s = status.toLowerCase();
+  if (s === "open") return "open";
+  if (s === "closed") return "closed";
+  return "upcoming";
+}
+function formatCategory(key, rawCategory) {
+  if (key === "engineering") return "Engineering";
+  if (key === "medical") return "Medical";
+  if (key === "both") return rawCategory || "Engineering / Medical";
+  if (key === "others") return rawCategory || "Others";
+  return rawCategory || "Others";
+}
+
+function renderAllCards(targetGrid, list) {
+  targetGrid.innerHTML = "";
+  list.forEach((exam, index) => {
+    const [name, catKey, img, link, examDate, regStatus, regCloseDate] = exam;
+    const d = daysBetween(examDate);
+    const regDays = daysBetween(regCloseDate);
+    const stored = myExams.includes(name);
+    const statusClass = getStatusClass(regStatus);
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.animationDelay = (index * 0.03) + "s";
+    card.dataset.category = catKey;
+    card.dataset.name = name.toLowerCase();
+
+    card.innerHTML = `
+      <img src="${img}" class="logo" alt="${name}">
+      <div class="exam-name">${name}</div>
+      <div class="category">${formatCategory(catKey)}</div>
+      <div class="status-row">
+        <span class="badge ${statusClass}">${regStatus}</span>
+        <span class="countdown" data-exam-date="${examDate}">
+          <span class="days-left">${d}</span> days to exam
+        </span>
+      </div>
+      <div class="status-row">
+        <span class="countdown">Registration closes in ${regDays} days</span>
+      </div>
+      <div class="button-row">
+        <a href="${link}" class="button-link exam-view-link" data-exam="${name}">View Details</a>
+        <button class="button-add ${stored ? "added" : ""}">
+          ${stored ? "Added ✓" : "Add to My Exams"}
+        </button>
+      </div>
+    `;
+
+    const addBtn = card.querySelector(".button-add");
+    addBtn.addEventListener("click", () => {
+      if (!getCurrentUser()) {
+        requireLogin();
+        return;
+      }
+      toggleMyExam(name, addBtn);
+    });
+
+    const viewLink = card.querySelector(".exam-view-link");
+    viewLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      setChatbotExam(name);
+      window.location.href = link;
+    });
+
+    targetGrid.appendChild(card);
+  });
+}
+
+const defaultSteps = [
+  "Create account / sign up",
+  "Fill application form",
+  "Upload photo & signature",
+  "Upload documents (category / PwD, etc.)",
+  "Pay application fee",
+  "Download confirmation page"
+];
+
+function getChecklistForExam(name) {
+  if (!checklistState[name]) {
+    checklistState[name] = defaultSteps.map(() => false);
+  }
+  return checklistState[name];
+}
+function saveChecklist() {
+  keys = getStorageKeysForUser(getCurrentUser());
+  localStorage.setItem(keys.checklistKey, JSON.stringify(checklistState));
+}
+function calcProgressPercent(flags) {
+  const total = flags.length;
+  const done = flags.filter(Boolean).length;
+  return total === 0 ? 0 : Math.round((done / total) * 100);
+}
+function setCircleProgress(circleEl, percent) {
+  const degrees = Math.round((percent / 100) * 360);
+  circleEl.style.background = `conic-gradient(#22c55e ${degrees}deg, #e5e7eb 0deg)`;
+}
+
+function renderMyCards(targetGrid, list) {
+  targetGrid.innerHTML = "";
+  list.forEach((exam, index) => {
+    const [name, catKey, img, link, examDate, regStatus, regCloseDate] = exam;
+    const d = daysBetween(examDate);
+    const regDays = daysBetween(regCloseDate);
+    const statusClass = getStatusClass(regStatus);
+    const flags = getChecklistForExam(name);
+    const percent = calcProgressPercent(flags);
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.animationDelay = (index * 0.03) + "s";
+    card.dataset.category = catKey;
+    card.dataset.name = name.toLowerCase();
+
+    const checklistHtml = defaultSteps.map((step, i) => {
+      const checked = flags[i] ? "checked" : "";
+      return `
+        <label class="checklist-item">
+          <input type="checkbox" data-step="${i}" ${checked}>
+          <span>${step}</span>
+        </label>
+      `;
+    }).join("");
+
+    card.innerHTML = `
+      <img src="${img}" class="logo" alt="${name}">
+      <div class="exam-name">${name}</div>
+      <div class="category">${formatCategory(catKey)}</div>
+      <div class="status-row">
+        <span class="badge ${statusClass}">${regStatus}</span>
+        <span class="countdown" data-exam-date="${examDate}">
+          <span class="days-left">${d}</span> days to exam
+        </span>
+      </div>
+      <div class="status-row">
+        <span class="countdown">Registration closes in ${regDays} days</span>
+      </div>
+      <div class="my-exam-body">
+        <div class="progress-wrapper">
+          <div class="progress-ring">
+            <div class="progress-inner">${percent}%</div>
+          </div>
+          <div class="progress-label">Registration progress</div>
+          <div class="progress-message"></div>
+        </div>
+        <div class="checklist">
+          <div class="checklist-title">My Registration Steps</div>
+          ${checklistHtml}
+        </div>
+      </div>
+      <div class="button-row">
+        <a href="${link}" class="button-link exam-view-link" data-exam="${name}">View Details</a>
+        <button class="button-add added">Added ✓</button>
+      </div>
+    `;
+
+    const circle = card.querySelector(".progress-ring");
+    const inner = card.querySelector(".progress-inner");
+    const msgEl = card.querySelector(".progress-message");
+
+    setCircleProgress(circle, percent);
+    inner.textContent = percent + "%";
+    msgEl.textContent = percent === 100
+      ? "All the very best for your exam (TEAM EXAMIFY). For further queries, contact : Aditya Bagewadi : 782980957 (Anytime, Anywhere)"
+      : "";
+
+    card.querySelectorAll(".checklist-item input").forEach(input => {
+      input.addEventListener("change", () => {
+        const stepIndex = parseInt(input.dataset.step, 10);
+        const currentFlags = getChecklistForExam(name);
+        currentFlags[stepIndex] = input.checked;
+        checklistState[name] = currentFlags;
+        saveChecklist();
+        const newPercent = calcProgressPercent(currentFlags);
+        setCircleProgress(circle, newPercent);
+        inner.textContent = newPercent + "%";
+        msgEl.textContent = newPercent === 100
+          ? "All the very best for your exam (TEAM EXAMIFY). For further queries, contact : Aditya Bagewadi : 782980957 (Anytime, Anywhere)"
+          : "";
+      });
+    });
+
+    const viewLink = card.querySelector(".exam-view-link");
+    viewLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      setChatbotExam(name);
+      window.location.href = link;
+    });
+
+    targetGrid.appendChild(card);
+  });
+}
+
+function toggleMyExam(name, btn) {
+  if (!getCurrentUser()) {
+    requireLogin();
+    return;
+  }
+  if (myExams.includes(name)) {
+    myExams = myExams.filter(n => n !== name);
+    btn.classList.remove("added");
+    btn.textContent = "Add to My Exams";
+  } else {
+    myExams.push(name);
+    btn.classList.add("added");
+    btn.textContent = "Added ✓";
+  }
+  keys = getStorageKeysForUser(getCurrentUser());
+  localStorage.setItem(keys.myExamsKey, JSON.stringify(myExams));
+  renderMySection();
+}
+
+function applyFilters() {
+  const cat = categorySelect.value;
+  const searchValue = searchInput.value.toLowerCase();
+
+  document.querySelectorAll("#allGrid .card").forEach(card => {
+    const cardCat = card.dataset.category;
+    const cardName = card.dataset.name;
+    const matchesSearch = cardName.includes(searchValue);
+
+    let matchesCat = false;
+    if (cat === "all") {
+      matchesCat = true;
+    } else if (cat === "both") {
+      matchesCat = cardCat === "both";
+    } else if (cat === "others") {
+      matchesCat = cardCat === "others";
+    } else {
+      matchesCat = cardCat === cat;
+    }
+
+    card.style.display = (matchesSearch && matchesCat) ? "flex" : "none";
+  });
+}
+
+function renderAllSection() {
+  renderAllCards(allGrid, exams);
+  applyFilters();
+}
+function renderMySection() {
+  if (!getCurrentUser()) {
+    myGrid.innerHTML = "<p style='color:#e5e7eb; text-align:center;'>Please login to view your My Exams list.</p>";
+    return;
+  }
+  const filtered = exams.filter(e => myExams.includes(e[0]));
+  renderMyCards(myGrid, filtered);
+}
+
+btnAll.addEventListener("click", () => {
+  btnAll.classList.add("active");
+  btnMy.classList.remove("active");
+  allSection.classList.add("active");
+  mySection.classList.remove("active");
+  sectionTitle.textContent = "All Exams";
+});
+btnMy.addEventListener("click", () => {
+  if (!getCurrentUser()) {
+    requireLogin();
+    return;
+  }
+  btnMy.classList.add("active");
+  btnAll.classList.remove("active");
+  allSection.classList.remove("active");
+  mySection.classList.add("active");
+  sectionTitle.textContent = "My Exams";
+  renderMySection();
+});
+
+categorySelect.addEventListener("change", applyFilters);
+searchInput.addEventListener("input", applyFilters);
+
+function updateCountdowns() {
+  const now = new Date();
+  document.querySelectorAll(".countdown[data-exam-date]").forEach(el => {
+    const dateStr = el.getAttribute("data-exam-date");
+    const target = new Date(dateStr + "T00:00:00");
+    const diff = target - now;
+    let daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    if (daysLeft < 0) daysLeft = 0;
+    const span = el.querySelector(".days-left");
+    if (span) {
+      span.textContent = daysLeft;
+    }
+  });
+}
+
+renderAccountSection();
+renderAllSection();
+renderMySection();
+updateCountdowns();
+setInterval(updateCountdowns, 1000);
+
+// ================== EXAM ASSISTANT CHATBOT (API VERSION) ==================
+
+const chatbotContainer = document.createElement("div");
+chatbotContainer.id = "exam-chatbot";
+chatbotContainer.innerHTML = `
+  <h3 style="
+    margin-top: 0;
+    font-size: 18px;
+    color: #38bdf8;
+    letter-spacing: 0.02em;
+  ">
+    Exam Assistant
+  </h3>
+  <p style="
+    font-size: 13px;
+    color: #9ca3af;
+    margin-bottom: 10px;
+  ">
+    Ask anything about this exam: why it matters, courses offered, pattern, eligibility, difficulty, cutoffs, or preparation tips.
+  </p>
+
+  <div id="exam-chatbot-messages">
+    <div style="
+      align-self: flex-start;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border-bottom-left-radius: 2px;
+      background: #111827;
+      font-size: 13px;
+    ">
+      Hi! Select an exam from the list above and then type your question here.
+      You can ask about importance, available courses, pattern, or any other exam-related doubts.
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 8px; margin-top: 10px;">
+    <input
+      id="exam-chatbot-input"
+      type="text"
+      placeholder="Type your exam question..."
+      style="
+        flex: 1;
+        border-radius: 999px;
+        border: 1px solid #1f2937;
+        padding: 8px 12px;
+        font-size: 13px;
+        background: #020617;
+        color: #e5e7eb;
+        outline: none;
+      "
+    />
+    <button
+      id="exam-chatbot-send"
+      style="
+        border-radius: 999px;
+        border: none;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: #022c22;
+        padding: 8px 14px;
+        font-size: 13px;
+        cursor: pointer;
+        font-weight: 600;
+        box-shadow: 0 6px 16px rgba(34, 197, 94, 0.4);
+      "
+    >
+      Send
+    </button>
+  </div>
+
+  <p style="
+    margin-top: 8px;
+    font-size: 11px;
+    color: #9ca3af;
+    line-height: 1.4;
+  ">
+    Note: This assistant is for quick guidance only.
+    If you still have doubts or need personalised help, please contact ground support (TEAM EXAMIFY).
+  </p>
+`;
+document.body.appendChild(chatbotContainer);
+
+const messagesBox = document.getElementById("exam-chatbot-messages");
+const chatInput = document.getElementById("exam-chatbot-input");
+const chatSendBtn = document.getElementById("exam-chatbot-send");
+
+let CURRENT_CHAT_EXAM = exams.length > 0 ? exams[0][0] : "JEE Main";
+
+function setChatbotExam(name) {
+  CURRENT_CHAT_EXAM = name;
+  addMessage("You are now asking about: " + name, "bot");
+}
+
+function addMessage(text, from = "bot") {
+  const div = document.createElement("div");
+  div.style.maxWidth = "80%";
+  div.style.padding = "8px 10px";
+  div.style.borderRadius = "12px";
+  div.style.fontSize = "13px";
+  div.style.whiteSpace = "pre-wrap";
+
+  if (from === "user") {
+    div.style.alignSelf = "flex-end";
+    div.style.background = "#2563eb";
+    div.style.color = "#f9fafb";
+    div.style.borderBottomRightRadius = "2px";
+  } else {
+    div.style.alignSelf = "flex-start";
+    div.style.background = "#111827";
+    div.style.color = "#e5e7eb";
+    div.style.borderBottomLeftRadius = "2px";
+  }
+
+  div.textContent = text;
+  messagesBox.appendChild(div);
+  messagesBox.scrollTop = messagesBox.scrollHeight;
+}
+
+async function handleSend() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+
+  addMessage(text, "user");
+  chatInput.value = "";
+
+  const thinking = document.createElement("div");
+  thinking.style.maxWidth = "80%";
+  thinking.style.padding = "8px 10px";
+  thinking.style.borderRadius = "12px";
+  thinking.style.fontSize = "13px";
+  thinking.style.whiteSpace = "pre-wrap";
+  thinking.style.alignSelf = "flex-start";
+  thinking.style.background = "#111827";
+  thinking.style.color = "#e5e7eb";
+  thinking.style.borderBottomLeftRadius = "2px";
+  thinking.textContent = "Thinking...";
+  messagesBox.appendChild(thinking);
+  messagesBox.scrollTop = messagesBox.scrollHeight;
+
+  try {
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        exam: CURRENT_CHAT_EXAM,
+        question: text
+      })
+    });
+
+    const data = await res.json();
+    messagesBox.removeChild(thinking);
+
+    if (data && data.answer) {
+      addMessage(data.answer, "bot");
+    } else {
+      addMessage(
+        "Sorry, I could not get an answer right now. Please contact ground support (TEAM EXAMIFY).",
+        "bot"
+      );
+    }
+  } catch (err) {
+    console.error(err);
+    messagesBox.removeChild(thinking);
+    addMessage(
+      "There was an error talking to the AI. Please contact ground support (TEAM EXAMIFY).",
+      "bot"
+    );
+  }
+}
+
+chatSendBtn.addEventListener("click", handleSend);
+chatInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    handleSend();
+  }
+});
+</script>
+</body>
+</html>
