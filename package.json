@@ -1,22 +1,15 @@
-
 {
-  "name": "examify.final",
+  "name": "examify-infosite",
   "version": "1.0.0",
-  "description": "",
+  "description": "Examify app with AI backend",
   "main": "server.js",
-  "type": "module",
   "scripts": {
     "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "express": "^4.21.2",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.2.1",
-    "openai": "^6.16.0"
+    "openai": "^4.80.1",
+    "dotenv": "^16.4.5"
   }
-}
-
 }
