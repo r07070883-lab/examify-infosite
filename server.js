@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// serve your static frontend (index.html) from this folder
+// Serve static frontend (index.html, css, js)
 app.use(express.static("."));
 
 const client = new OpenAI({
@@ -18,18 +18,22 @@ const client = new OpenAI({
 
 app.post("/api/chat", async (req, res) => {
   try {
-    const { exam, question } = req.body || {};
+    const { question } = req.body || {};
+
+    if (!question || question.trim() === "") {
+      return res.json({
+        answer: "Please ask a valid question. If this does not answer your question, please contact ground support (TEAM EXAMIFY)."
+      });
+    }
 
     const systemPrompt =
-  "You are an exam assistant for Indian entrance exams. " +
-  "Answer briefly and clearly. You can answer any question the student asks " +
-  "about this exam: importance, courses, eligibility, pattern, difficulty, cutoffs, preparation, etc. " +
-  "Be factual and avoid making up institutes or courses.";
-
+      "You are a helpful academic assistant for students in India. " +
+      "Answer briefly, clearly, and in simple language. " +
+      "You can answer general questions about exams, education, careers, eligibility, exam patterns, difficulty levels, preparation strategies, and related academic topics. " +
+      "Be factual and avoid making up institutes, courses, statistics, or official policies.";
 
     const userPrompt =
-      "Exam: " + (exam || "Unknown") + "\n" +
-      "Question: " + (question || "") + "\n\n" +
+      "Question: " + question + "\n\n" +
       "After answering, add this sentence exactly once at the end:\n" +
       "'If this does not answer your question, please contact ground support (TEAM EXAMIFY).'";
 
